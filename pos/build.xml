@@ -1,0 +1,121 @@
+<project name="FYJPoSSystem" default="compile" basedir=".">
+    <property file="${user.home}/build.properties"/>
+    <property file="default.properties"/>
+
+    <path id="project.classpath">
+        <pathelement location="${classes.dir}"/>
+
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target        name="compile"
+            description="Builds application ready to run locally">
+        <mkdir dir="${classes.dir}"/>
+
+        <javac
+               includeantruntime="false"
+                          srcdir="${src.dir}"
+                         destdir="${classes.dir}"
+                           debug="${compile.debug}"
+                     deprecation="${compile.deprecation}"
+                        optimize="${compile.optimize}"
+        				excludes="**\tempDriver.java">
+
+            <classpath refid="project.classpath"/>
+
+            <compilerarg value="-Xlint:all"/>
+            <compilerarg value="-Xlint:-path"/>
+        </javac>
+    </target>
+
+
+    <target        name="doc"
+            description="Create Javadoc API documentation.">
+
+        <mkdir dir="${docs.dir}/api"/>
+
+        <javadoc sourcepath="${src.dir}"
+                    destdir="${docs.dir}/${docs.api.dir}"
+                     author="${docs.show.author}"
+                    version="${docs.show.version}"
+                     access="${docs.show.access}"
+                     packagenames="*">
+            <classpath refid="project.classpath"/>
+
+            <link href="${docs.jdk.javadoc.url}" />
+            <link href="${docs.junit.javadoc.url}" />
+
+            <tag name="modeledby"      description="Modeled By:"
+                                             scope="types"/>
+            <tag name="initEnsures"    description="Initialization Ensures:"
+                                             scope="types"/>
+            <tag name="invariant"      description="Representation Invariant:"
+                                             scope="types"/>
+            <tag name="requires"       description="Requires:"
+                                             scope="types"/>
+            <tag name="correspondence" description="Correspondence:"
+                                             scope="types"/>
+            <tag name="version"/>
+            <tag name="author"/>
+            <tag name="param"/>
+            <tag name="precondition"   description="Preconditions:"
+                                             scope="constructors, methods"/>
+            <tag name="postcondition"  description="Postconditions:"
+                                             scope="constructors, methods"/>
+            <tag name="preserves"      description="Preserves:"
+                                             scope="constructors, methods"/>
+            <tag name="return"/>
+            <tag name="throws"/>
+
+            <tag name="example" description="Example:"/>
+        </javadoc>
+    </target>
+    <target        name="dist"
+                depends="compile"
+            description="Converts to jar file">
+            <mkdir dir="${dist.dir}"/>
+            <jar destfile="${dist.dir}/${ant.project.name}.jar"
+                 basedir="${classes.dir}">
+           <fileset dir = "${src.dir}/${resources.dir}/">
+                <include name = "*"/>
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" 
+                	value="${main.class}"/>
+            </manifest>
+            </jar>
+    </target>
+    <target        name="run"
+                depends="compile, dist"
+            description="Run the JAR package">
+            <java jar="${dist.dir}/${ant.project.name}.jar" fork="true"/>
+    </target>
+
+    <target        name="test"
+                depends="compile"
+            description="Run JUnit Test Cases">
+
+        <junit printSummary="no" haltonfailure="yes">
+            <classpath refid="project.classpath"/>
+
+            <formatter type="plain" usefile="false"/>
+
+            <batchtest fork="yes">
+                <fileset dir="${classes.dir}">
+                    <include name="**/*Test*.class"/>
+                    <exclude name="**/*Abstract*Test*.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target        name="clean"
+            description="Delete old build and doc directories">
+        <delete dir="${classes.dir}"/>
+        <delete dir="${docs.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+</project>
