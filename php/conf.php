@@ -1,7 +1,7 @@
 <?php
     $host = "localhost";
     $user = "cs453st2";
-    $pass = "batmanondrugs";
+    $pass = ""; //Replace with our password
     $con = mysql_pconnect($host, $user, $pass) or die(mysql_error());
     mysql_select_db("cs453db2",$con);
     
