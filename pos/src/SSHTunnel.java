@@ -21,6 +21,8 @@ import com.jcraft.jsch.UserInfo;
 
 /**
  * Creates JDBC connections to a MySQL server through an SSH tunnel.
+ * Code segments taken from MYSQL jdbc connection tutorials, and from
+ * http://intl.feedfury.com/content/47074060-using-java-to-connect-to-mysql-through-ssh.html
  */
 public class SSHTunnel {
 	private final String sshHost, sshUsername, sshPassword;
