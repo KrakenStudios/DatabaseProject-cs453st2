@@ -111,24 +111,45 @@ CREATE TABLE `cs453db2`.`Products`
 #Populate Admins
 INSERT INTO `cs453db2`.`Admins` (`LastName`, `FirstName`, `Username`, `Password`, `Salt`, `AdminRights`, `IsSuperAdmin`) VALUES ('Ward', 'Chris', 'cward', 'lolplaintext', '12$', '777', b'1');
 INSERT INTO `cs453db2`.`Admins` (`LastName`, `FirstName`, `Username`, `Password`, `Salt`, `AdminRights`, `IsSuperAdmin`) VALUES ('Gonzalez', 'Diego', 'dgonzalez', 'lolplaintext', '12$', '777', b'1');
-INSERT INTO `cs453db2`.`Admins` (`LastName`, `FirstName`, `Username`, `Password`, `Salt`, `AdminRights`, `IsSuperAdmin`) VALUES ('Stender', 'Matt', 'mstender', 'loldrugs', '12$', '777', b'1');
+INSERT INTO `cs453db2`.`Admins` (`LastName`, `FirstName`, `Username`, `Password`, `Salt`, `AdminRights`, `IsSuperAdmin`) VALUES ('Stender', 'Matt', 'mstender', 'lolplaintext', '12$', '777', b'1');
 
 #Populate Brands
-INSERT INTO `cs453db2`.`Brands` (`BrandName`, `ProductsSold`, `ProductSizes`, `ProductWeight`) VALUES ('1', 'Pepsi', 'Pepsi, Mountain Dew, Dr. Pepper, Mello Yellow, Diet Pepsi, Diet Moutain Dew', 'Medium', '192');
+INSERT INTO `cs453db2`.`Brands` (`ProductBrand`, `ProductsSold`, `ProductSizes`, `ProductWeight`) VALUES ('Sony', 'CD, DVD, Bluray', 'Small', '10');
+INSERT INTO `cs453db2`.`Brands` (`ProductBrand`, `ProductsSold`, `ProductSizes`, `ProductWeight`) VALUES ('Warner Brothers', 'DVD, Bluray', 'Small', '10');
+INSERT INTO `cs453db2`.`Brands` (`ProductBrand`, `ProductsSold`, `ProductSizes`, `ProductWeight`) VALUES ('Epic', 'Games', 'Small', '10');
+INSERT INTO `cs453db2`.`Brands` (`ProductBrand`, `ProductsSold`, `ProductSizes`, `ProductWeight`) VALUES ('Capitol', 'CD', 'Small', '10');
 
 #Populate Customers
-INSERT INTO `cs453db2`.`Customers` (`FrequentShopperNumber`, `LastName`, `FirstName`, `ShippingAddress`, `ShippingAddress2`, `ShippingCity`, `ShippingState`, `ShippingZIPCode`, `BillingAddress`, `BillingAddress2`, `BillingCity`, `BillingState`, `BillingZIPCode`, `EmailAddress`, `PointsGained`, `Username`, `Password`, `Salt`) VALUES ('1', '920302112', 'Ward', 'Chris', '23 Cats Den Dr', 'APT 723', 'Cullowhee', 'NC', '28723', '23 Cats Den Dr', 'APT 723', 'Cullowhee', 'NC', '28723', 'chris.dev.ward@gmail.com', '9001', 'cwardcust', 'lolplaintext', '13$');
+INSERT INTO `cs453db2`.`Customers` (`FrequentShopperNumber`, `LastName`, `FirstName`, `ShippingAddress`, `ShippingAddress2`, `ShippingCity`, `ShippingState`, `ShippingZIPCode`, `BillingAddress`, `BillingAddress2`, `BillingCity`, `BillingState`, `BillingZIPCode`, `EmailAddress`, `PointsGained`, `Username`, `Password`, `Salt`) VALUES ('920302112', 'Montana', 'Antonio', '323 Cockroach Ave', '', 'Miami', 'FL', '33101', '323 Cockroach Ave', '', 'Miami', 'FL', '33101', 'tonytheboss@gmail.com', '900000', 'tonyMontana', 'myLittleFriend', '13$');
+INSERT INTO `cs453db2`.`Customers` (`FrequentShopperNumber`, `LastName`, `FirstName`, `ShippingAddress`, `ShippingAddress2`, `ShippingCity`, `ShippingState`, `ShippingZIPCode`, `BillingAddress`, `BillingAddress2`, `BillingCity`, `BillingState`, `BillingZIPCode`, `EmailAddress`, `PointsGained`, `Username`, `Password`, `Salt`) VALUES ('920302113', 'Castle', 'Frank', '1414 32nd St', 'Apartment 7', 'New York', 'NY', '10453', '1414 32nd St', 'Apartment 7', 'New York', 'NY', '10453', 'FCastle@gmail.com', '100', 'thePunisher', 'justice', '13$');
+INSERT INTO `cs453db2`.`Customers` (`FrequentShopperNumber`, `LastName`, `FirstName`, `ShippingAddress`, `ShippingAddress2`, `ShippingCity`, `ShippingState`, `ShippingZIPCode`, `BillingAddress`, `BillingAddress2`, `BillingCity`, `BillingState`, `BillingZIPCode`, `EmailAddress`, `PointsGained`, `Username`, `Password`, `Salt`) VALUES ('920302114', 'Schwarzenegger', 'Arnold', '12989 Chalon Rd', '', 'Los Angeles', 'CA', '90049', '12989 Chalon Rd', '', 'Los Angeles', 'CA', '90049', 'theGovernator@gmail.com', '7500', 'arnoldT1000', 'illBeBack', '13$');
+INSERT INTO `cs453db2`.`Customers` (`FrequentShopperNumber`, `LastName`, `FirstName`, `ShippingAddress`, `ShippingAddress2`, `ShippingCity`, `ShippingState`, `ShippingZIPCode`, `BillingAddress`, `BillingAddress2`, `BillingCity`, `BillingState`, `BillingZIPCode`, `EmailAddress`, `PointsGained`, `Username`, `Password`, `Salt`) VALUES ('920302115', 'Soprano', 'Tony', '633 Stagtrail Rd', '', 'West Caldwell', 'NJ', '07006', '633 Stagtrail Rd', '', 'West Caldwell', 'NJ', '07006', 'theBetterMobster@gmail.com', '850000', 'theGodfather', 'tlkn2me', '13$');
 
 #Populate Products
-INSERT INTO `cs453db2`.`Products` (`UPCCode`,  `ProductBrand`, `ProductType`, `ProductName`, `ProductDescription`, `ProductSellPrice`, `ProductWholesalePrice`, `AmountInStock`, `InStock`) VALUES ('923547', 'Capitol', 'Music', 'Sargent Peppers Lonely Heart's Club Band', 'One of the Beatles' best selling albums!', '10.00', '5.00', '20', b'1');
-INSERT INTO `cs453db2`.`Products` (`UPCCode`,  `ProductBrand`, `ProductType`, `ProductName`, `ProductDescription`, `ProductSellPrice`, `ProductWholesalePrice`, `AmountInStock`, `InStock`) VALUES ('923548', 'PetCo', 'Pets', 'Hermit Crab', 'Its a crab!', '20.00', '5.00', '2000', b'1');
-INSERT INTO `cs453db2`.`Products` (`UPCCode`,  `ProductBrand`, `ProductType`, `ProductName`, `ProductDescription`, `ProductSellPrice`, `ProductWholesalePrice`, `AmountInStock`, `InStock`) VALUES ('923549', 'Sony', 'Music', 'Men In Black Soundtrack', 'Soundtrack for the hit movie 'Men in Black'', '14.99', '5.00', '199', b'1');
+INSERT INTO `cs453db2`.`Products` (`UPCCode`,  `ProductBrand`, `ProductType`, `ProductName`, `ProductDescription`, `ProductSellPrice`, `ProductWholesalePrice`, `AmountInStock`, `InStock`, `Department`, `ProductSize`) VALUES ('923547', 'Capitol', 'Music', 'Sargent Peppers Lonely Hearts Club Band', 'One of the Beatles best selling albums!', '10.00', '5.00', '20', b'1', 'music', 'small');
+INSERT INTO `cs453db2`.`Products` (`UPCCode`,  `ProductBrand`, `ProductType`, `ProductName`, `ProductDescription`, `ProductSellPrice`, `ProductWholesalePrice`, `AmountInStock`, `InStock`, `Department`, `ProductSize`) VALUES ('923548', 'Warner Brothers', 'Movies', 'Harry Potter', 'Magic wizards, wands and stuff!', '20.00', '5.00', '2000', b'1', 'Movies', 'small');
+INSERT INTO `cs453db2`.`Products` (`UPCCode`,  `ProductBrand`, `ProductType`, `ProductName`, `ProductDescription`, `ProductSellPrice`, `ProductWholesalePrice`, `AmountInStock`, `InStock`, `Department`, `ProductSize`) VALUES ('923548', 'Epic', 'Games', 'Gears of War', 'The best series ever!', '60.00', '30.00', '20', b'1','Games','small');
+INSERT INTO `cs453db2`.`Products` (`UPCCode`,  `ProductBrand`, `ProductType`, `ProductName`, `ProductDescription`, `ProductSellPrice`, `ProductWholesalePrice`, `AmountInStock`, `InStock`, `Department`, `ProductSize`) VALUES ('923549', 'Sony', 'Music', 'Men In Black Soundtrack', 'Soundtrack for the hit movie Men in Black', '14.99', '5.00', '199', b'1','Music','small');
 
 #Populate ProductTypes
-INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('1', 'Food', 'Beverages', 'Soda', 'Cola');
+INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('Music', 'CD', 'Metal', 'Judas Priest');
+INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('Music', 'CD', 'R&B', 'Nelly');
+INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('Music', 'CD', 'Rap', 'Ice Cube');
+INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('Music', 'CD', 'Rock', 'Aerosmith');
+INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('Movies', 'DVD', 'Action', 'Terminator');
+INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('Movies', 'DVD', 'Comedy', 'Madea Goes to Prison');
+INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('Movies', 'bluray', 'Horror', 'Last House on the Left');
+INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('Movies', 'bluray', 'Suspense', 'The Next Three Days');
+INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('Games', 'NES', 'Action', 'Super Mario Bros');
+INSERT INTO `cs453db2`.`ProductTypes` (`Department`, `Category`, `SubCategory`, `Items`) VALUES ('Games', 'Playstation 1', 'Adventure', 'Spyro');
 
 #Populate Stores
-INSERT INTO `cs453db2`.`Stores` (`StoreName`, `StoreAddress`, `StoreCity`, `StoreState`, `StoreZIPCode`, `Latitude`, `Longitude`, `HoursOpen`, `DaysOpen`) VALUES ('1', 'cs453db2', '227 A.K. Hinds University Center ', 'Cullowhee', 'NC', '28723', '35.31129', '-83.18270 ', '8', 'MTWTFSS');
+INSERT INTO `cs453db2`.`Stores` (`StoreName`, `StoreAddress`, `StoreCity`, `StoreState`, `StoreZIPCode`, `Latitude`, `Longitude`, `HoursOpen`, `DaysOpen`) VALUES ('Fayetteville', '410 Cross Creek Mall', 'Fayetteville', 'NC', '28303', '', '', '8', 'MTWTFSS');
+INSERT INTO `cs453db2`.`Stores` (`StoreName`, `StoreAddress`, `StoreCity`, `StoreState`, `StoreZIPCode`, `Latitude`, `Longitude`, `HoursOpen`, `DaysOpen`) VALUES ('Asheville', '3 S Tunnel Rd', 'Asheville', 'NC', '28805', '', '', '8', 'MTWTFSS');
+INSERT INTO `cs453db2`.`Stores` (`StoreName`, `StoreAddress`, `StoreCity`, `StoreState`, `StoreZIPCode`, `Latitude`, `Longitude`, `HoursOpen`, `DaysOpen`) VALUES ('Concord', '8481 Concord Mills Blvd', 'Concord', 'NC', '28027', '', '', '8', 'MTWTFSS');
+INSERT INTO `cs453db2`.`Stores` (`StoreName`, `StoreAddress`, `StoreCity`, `StoreState`, `StoreZIPCode`, `Latitude`, `Longitude`, `HoursOpen`, `DaysOpen`) VALUES ('Durham', '6910 Fayetteville Rd', 'Durham', 'NC', '27713', '', '', '8', 'MTWTFSS');
 
 #Populate Vendors
-INSERT INTO `cs453db2`.`Vendors` (`VendorName`, `BrandsSold`) VALUES ('1', 'Fun!Entertainment', 'PartyHardy');
+INSERT INTO `cs453db2`.`Vendors` (`VendorName`, `ProductBrand`) VALUES ('FYEMusicVendor', 'Sony, Capitol');
+INSERT INTO `cs453db2`.`Vendors` (`VendorName`, `ProductBrand`) VALUES ('FYEGameVendor', 'Epic');
+INSERT INTO `cs453db2`.`Vendors` (`VendorName`, `ProductBrand`) VALUES ('FYEMovieVendor', 'Warner Brothers, Sony');
