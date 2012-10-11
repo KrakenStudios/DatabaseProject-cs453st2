@@ -11,7 +11,7 @@ CREATE TABLE `cs453db2`.`Admins`
   LastName varchar(14),
   FirstName varchar(14),
   Username varchar(18),
-  Password char(18),
+  Password varchar(18),
   Salt varchar(5),
   AdminRights varchar(4),
   IsSuperAdmin tinyint(1) DEFAULT '0',
@@ -23,21 +23,21 @@ CREATE TABLE `cs453db2`.`Customers`
   Id int NOT NULL AUTO_INCREMENT,
   FrequentShopperNumber int,
   LastName varchar(14),
-  FirstName varchar(18),
+  FirstName varchar(14),
   ShippingAddress varchar(50),
   ShippingAddress2 varchar(50),
   ShippingCity varchar(18),
-  ShippingState varchar(10),
+  ShippingState char(2),
   ShippingZIPCode varchar(9),
   BillingAddress varchar(50),
   BillingAddress2 varchar(50),
   BillingCity varchar(18),
-  BillingState varchar(10),
+  BillingState char(2),
   BillingZIPCode varchar(9),
-  EmailAddress varchar(18),
+  EmailAddress varchar(30),
   PointsGained int,
   Username varchar(18),
-  Password char(56),
+  Password varchar(18),
   Salt varchar(5),
   PRIMARY KEY (Id)
 );
@@ -48,12 +48,12 @@ CREATE TABLE `cs453db2`.`Stores`
   StoreName varchar(18),
   StoreAddress varchar(18),
   StoreCity varchar(18),
-  StoreState varchar(18),
+  StoreState char(2),
   StoreZIPCode varchar(18),
   Latitude varchar(18),
   Longitude varchar(18),
-  HoursOpen int,
-  DaysOpen varchar(18),
+  HoursOpen TEXT,
+  DaysOpen varchar(7),
   PRIMARY KEY (Id)
 );
 
@@ -100,11 +100,11 @@ CREATE TABLE `cs453db2`.`Products`
   ProductWholesalePrice int,
   AmountInStock double(18,0),
   Department varchar(18),
-  InStock tinyint(1) DEFAULT '1'
+  InStock tinyint(1) DEFAULT '1',
   PRIMARY KEY (Id),
   FOREIGN KEY (ProductBrand) REFERENCES Brands (ProductBrand),
   FOREIGN KEY (ProductType) REFERENCES ProductTypes (Category),
-  FOREIGN KEY (Department) REFERENCES ProductTypes (Department),
+  FOREIGN KEY (Department) REFERENCES ProductTypes (Department)
 );
 
 
