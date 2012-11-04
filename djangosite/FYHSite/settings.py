@@ -117,6 +117,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'registration',
     'FYHSite.blog',
+    'django.contrib.humanize',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -141,3 +142,12 @@ LOGGING = {
         },
     }
 }
+
+# Activation registration email settings
+ACCOUNT_ACTIVATION_DAYS=7
+EMAIL_HOST='localhost'
+EMAIL_PORT=25
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASS=''
+EMAIL_USE_TLS=False
+DEFAULT_FROM_EMAIL='registration@foryourharmonics.com'

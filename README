@@ -1,5 +1,8 @@
-IM THE COOLEST NIGGAS
-
+Todo:
+    Fix accounts page to allow users to modify data
+    Allow users to view purchased products
+    Allow users to view preferred customer statics
+    Edit templates so login/logout, etc doesn't go through /account/account/*
 
 
 This is a university project created for our Database class.
