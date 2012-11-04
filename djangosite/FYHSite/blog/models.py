@@ -10,4 +10,6 @@ class Products(models.Model):
     AmountInStock = models.IntegerField(default = 25)
     Department = models.CharField(max_length = 10)
     InStock = models.BooleanField(default = 1)
-
+    
+    def __unicode__(self):
+        return self.ProductName
