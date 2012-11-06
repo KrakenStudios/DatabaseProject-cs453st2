@@ -1,6 +1,7 @@
 # Django settings for FYHSite project.
 
-DEBUG = True
+#DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

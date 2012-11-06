@@ -26,4 +26,5 @@ urlpatterns = patterns('',
     url(r'^help/', 'FYHSite.blog.views.help',name='help'),
     url(r'^stores/', 'FYHSite.blog.views.stores',name='stores'),
     url(r'^account/', include('registration.urls')),
+    
 )
