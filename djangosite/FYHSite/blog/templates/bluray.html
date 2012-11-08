@@ -23,23 +23,35 @@
   <div class="header"><a href="/"><img src="/static/logo.gif" alt="" name="logo" width="163" height="81" id="logo" style="background-color: #C6D580; display:block;" /></a> 
 
 
-
-</div>
-  <div class="sidebar1">
-    //put categories here!
-    </div>
-    <div class="itemlink" align="right">
-    <a href="/music/">Music</a>
-    <a href="/dvd/">DVD</a>
-    <a href="/bluray/">Blu-ray</a>
-    <a href="/games/">Games</a>
-    <a href="/used/">Used</a>
-    </div>
-  
-  <div class="content">
-  <h4>Blu-ray</h4>
-  <p>
-      <hr />
+</div>                                                                          
+                                                                                
+<div class="sidebar1">                                                          
+    <p><a href="/music/">Music</a></p>                                          
+    <p><a href="/dvd/">DVD</a></p>                                              
+    <p><a href="/bluray/">Blu-ray</a></p>                                       
+     <ul>
+       <li>New Releases</li>
+       <li>Action</li>
+       <li>Thriller</li>
+       <li>Horror</li>
+       <li>Foreign</li>
+     </ul>
+    <p><a href="/games/">Games</a></p>                                          
+                                                                                
+    <p><a href="/used/">Used</a></p>                                            
+    </div>                                                                      
+    <div class="itemlink" align="right">                                        
+    <a href="/music/">Music</a>                                                 
+    <a href="/dvd/">DVD</a>                                                     
+    <a href="/bluray/">Blu-ray</a>                                              
+    <a href="/games/">Games</a>                                                 
+                                                                                
+    <a href="used/">Used</a>                                                    
+</div>                                                                          
+<div class="content">                                                           
+  <h4>Dvds</h4>                                                                 
+  <p>                                                                           
+    <hr />  
     {% for product  in Products %}
         <div class="Product">
         <h3>{{ product.ProductName}}</h3>
