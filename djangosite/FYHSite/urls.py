@@ -25,5 +25,5 @@ urlpatterns = patterns('',
     url(r'^help/', 'FYHSite.site.views.help',name='help'),
     url(r'^stores/', 'FYHSite.site.views.stores',name='stores'),
     url(r'^account/', include('registration.urls')),
-    
+    url(r'^search/', include('haystack.urls')), 
 )

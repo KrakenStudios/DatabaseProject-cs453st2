@@ -117,6 +117,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'registration',
+    'haystack',
     'FYHSite.site',
     'django.contrib.humanize',
 )
@@ -152,3 +153,6 @@ EMAIL_HOST_USER=''
 EMAIL_HOST_PASS=''
 EMAIL_USE_TLS=False
 DEFAULT_FROM_EMAIL='registration@foryourharmonics.com'
+
+HAYSTACK_SITECONF =  'FYHSite.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'simple'
