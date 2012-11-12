@@ -1,4 +1,4 @@
-from site.models import Products
+from models import Products
 from django.shortcuts import render_to_response
 
 
