@@ -12,6 +12,10 @@ def music(request):
     entries = Products.objects.all()[:10]
     return render_to_response('music.html', {'Products' : entries})
 
+def movie(request):
+    entries = Products.objects.all()[:10]
+    return render_to_response('movie.html', {'Products' :entries})
+
 def dvd(request):
     entries = Products.objects.all()[:10]
     return render_to_response('dvd.html', {'Products' : entries})
