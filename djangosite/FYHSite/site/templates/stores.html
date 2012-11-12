@@ -6,9 +6,23 @@
 <style type="text/css">
 @import url("/static/style.css");
 </style>
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT0PBvRRcDdzS8j5h9mobSKHMAttBBOak&sensor=false">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(35.313, -83.176),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+      }
+    </script>
 </head>
 
-<body>
+<body onload="initialize()">
 
 <div class="container">
 <div class="headertable" id="HeaderLinks">
@@ -58,7 +72,7 @@
   <li>Latitude:  <input Type="text"/></li></p>
   <input type="submit" value="Find Stores"/>
 </ul>
-    
+    <div id="map_canvas" style="width:100%; height:100%"></div>
   </div>
 
   <div class="footer">
