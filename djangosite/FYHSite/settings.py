@@ -155,4 +155,5 @@ EMAIL_USE_TLS=False
 DEFAULT_FROM_EMAIL='registration@foryourharmonics.com'
 
 HAYSTACK_SITECONF =  'FYHSite.search_sites'
-HAYSTACK_SEARCH_ENGINE = 'simple'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = '/home/cward/cs453/globalgit/djangosite/FYHSite/index.whoosh'

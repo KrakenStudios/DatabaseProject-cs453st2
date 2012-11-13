@@ -16,7 +16,7 @@
 {% if query %}
 <h3>Results</h3>
 {% for result in page.object_list %}
-<p><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></p>
+<p><a href="{{ result.object.get_absolute_url }}">{{ result.object.ProductName }}</a></p>
 {% empty %}
 <p>No results found.</p>
 {% endfor %}
