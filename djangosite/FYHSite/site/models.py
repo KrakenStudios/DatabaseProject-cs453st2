@@ -29,8 +29,8 @@ class Store(models.Model):
     StoreName = models.CharField(max_length = 100)
     Latitude = models.CharField(max_length = 10)
     Longitude = models.CharField(max_length = 10)
-    HoursOpen = models.CharField(max_length 10)
-    DaysOpen = models.CharField(max_length 8)
+    HoursOpen = models.CharField(max_length = 10)
+    DaysOpen = models.CharField(max_length = 8)
 
     def __unicode__(self):
         return self.StoreName
