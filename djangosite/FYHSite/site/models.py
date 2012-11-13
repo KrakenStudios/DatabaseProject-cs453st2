@@ -4,7 +4,7 @@ class Products(models.Model):
     UPCCode = models.IntegerField()
     ProductName = models.CharField(max_length = 100)
     ProductSize = models.CharField(max_length = 10)
-    ProductWeight = models.CharField(max_lenght = 10)
+    ProductWeight = models.CharField(max_length = 10)
     ProductDescription = models.TextField()
     
     def __unicode__(self):
