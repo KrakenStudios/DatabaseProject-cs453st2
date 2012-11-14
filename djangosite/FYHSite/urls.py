@@ -19,4 +19,5 @@ urlpatterns = patterns('',
     url(r'^accounts/', 'FYHSite.site.views.account',name='account'),
     url(r'^account/', include('registration.urls')),
     url(r'^search/', include('haystack.urls')), 
+    url(r'^ordertrack/', 'FYHSite.site.views.track',name='track'),
 )
