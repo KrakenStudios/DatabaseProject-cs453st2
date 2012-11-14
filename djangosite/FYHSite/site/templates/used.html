@@ -39,25 +39,14 @@
     <div class="itemlink" align="right">                                        
     <a href="/music/">Music</a>                                                 
     <a href="/movie/">Movie</a>                                              
-    <a href="/games/">Games</a>                                                 
-                                                                                
-    <a href="used/">Used</a>                                                    
+    <a href="/games/">Games</a>                                               
+    <a href="/used/">Used</a>                                                    
+
 </div>                                                                          
 <div class="content">                                                           
   <h4>Used</h4>                                                                 
   <p>                                                                           
     <hr />     
-    {% for product  in Products %}
-        {% if product.ProductType == "Used" %}
-        <div class="Product">
-        <h3>{{ product.ProductName}}</h3>
-        <h4>Price: {{ product.ProductSellPrice}}</h4>
-        <h4>Amount in Stock: {{ product.AmountInStock}}</h4>
-        <p>Description: <br/>{{ product.ProductDescription}}</p>
-        </div>
-        <hr />
-        {% endif %}
-    {% endfor %}
   </p>
     
   </div>
