@@ -8,7 +8,7 @@ class ProductIndex(SearchIndex):
     name = CharField(model_attr='ProductName')
     desc = CharField(model_attr='ProductDescription')
 
-    def get_queryset(self):
+    def index_queryset(self):
         """
         This is used when the entire index for model is updated, and should only include
         public entries

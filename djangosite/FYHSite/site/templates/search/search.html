@@ -18,7 +18,7 @@
     <a href="/wishlist">Wishlist</a>
     <a href="/help">Help</a>
     </div>
-  <div class="header"><a href="index"><img src="/static/logo.gif" alt="" name="logo" width="163" height="81" id="logo" style="background-color: #C6D580; display:block;" /></a> 
+  <div class="header"><a href="/index"><img src="/static/logo.gif" alt="" name="logo" width="163" height="81" id="logo" style="background-color: #C6D580; display:block;" /></a> 
 
 
 
@@ -64,8 +64,8 @@
     {% if query %}
     <h3>Results</h3>
     {% for result in page.object_list %}
-    <p><a href="{{ result.object.get_absolute_url }}">{{ result.object.ProductName }}</a>
-    {{ result.object.ProductDescription }} </p>
+        <p><a href="{{ result.object.get_absolute_url }}">{{ result.object.ProductName }}</a></p>
+        <p>Description: {{ result.object.ProductDescription }} </p>
     {% empty %}
     <p>No results found.</p>
     {% endfor %}
