@@ -1,8 +1,25 @@
 Todo:
+    me (chris)
     Fix accounts page to allow users to view own data
+    ^^ Check: https://docs.djangoproject.com/en/1.2/topics/auth/#django.contrib.auth.models.User ^^
+    -----------------------------------------------------------------------------------------------
     Allow users to view purchased products
     Allow users to view preferred customer statics (points, etc)
+    
+    Matt - 
+    Fix product types...
+    -- We need to have a way to store orders for users, and the items they bought
+      -- also, the 'preferred customer' stuff needs to be somehow modeled
 
+    --if that's done, try getting stuff und ## ideas ## at least started
+
+    Diego -
+    Get maps working
+
+ ## ideas ##
+ Links from search direct to http://~~~/{games,movies,music,used}/{Product_ID}
+    - then displays all info of item
+    - same for listings on the {games,movies,used,music} page
 
 This is a university project created for our Database class.
 Authors:
