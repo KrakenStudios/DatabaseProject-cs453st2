@@ -36,7 +36,8 @@ a:link {
 	text-decoration: underline;
 }
 a:visited {
-	color: #0070b7;
+	color: #FFFFFF;
+
 	text-decoration: underline;
 }
 a:hover, a:active, a:focus {
@@ -50,7 +51,7 @@ a:hover, a:active, a:focus {
 	text-decoration: underline;
 }
 .itemlink a:visited {
-	color: #4E5869;
+	color: #FFFFFF;
 	text-decoration: underline;
 }
 .itemlink a:hover, a:active, a:focus {

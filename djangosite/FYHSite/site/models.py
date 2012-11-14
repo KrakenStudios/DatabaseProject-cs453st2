@@ -1,10 +1,10 @@
 from django.db import models
 class Products(models.Model):
-    Product_ID = models.IntegerField()
+    #Products_ID = models.IntegerField()
     UPCCode = models.IntegerField()
     ProductName = models.CharField(max_length = 100)
-    ProductSize = models.CharField(max_length = 10)
-    ProductWeight = models.CharField(max_length = 10)
+    #ProductSize = models.CharField(max_length = 10)
+    #ProductWeight = models.CharField(max_length = 10)
     ProductDescription = models.TextField()
     
     def __unicode__(self):

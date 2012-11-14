@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>F.Y.H. - Music, Movies, Games, and more!</title>
+<style type="text/css">
+@import url("/static/style.css");
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="headertable" id="HeaderLinks">
+  	<a href="/cart/">Cart</a>
+    <a href="/account/login/">Login</a>
+    <a href="/account/">My Account</a>
+    <a href="/track/">Order Status</a>
+    <a href="/wishlist/">Wishlist</a>
+    <a href="/help/">Help</a>
+    </div>
+  <div class="header"><a href="/"><img src="/static/logo.gif" alt="" name="logo" width="163" height="81" id="logo" style="background-color: #C6D580; display:block;" /></a> 
+
+</div>
+  <div class="sidebar1">
+    <ul class="nav" >
+      <li><a>Enter now!</a>
+      <img src="/static/winstuff.gif" alt="Win free* stuff!" width="125" height="120"/></li>
+      <li><a>Buy 2 get 1 free</a><img src="/static/buy20.gif" alt="Buy 20 Get 1 free!"/></li>
+      <li><a>Follow us!</a> <img src="/static/followus.gif" alt="Follow us!"/></li>
+      <li><a>Contests galore!</a><img src="/static/Contests!.gif" alt="Win free stuff!"/></li>
+      <li><a>Search stuff!</a></li>
+      <li><p>
+      Music:  <input type="text"/>
+      Movies: <input type="text"/>
+      Games:  <input type="text"/>
+	 <input type="submit" value="Submit"/>
+     <input type="reset"/></p></li></ul>
+    <!-- end .sidebar1 --></div>
+<div class="itemlink" align="right">
+    <a href="/music/">Music</a>
+    <a href="/dvd/">DVD</a>
+    <a href="/bluray/">Blu-ray</a>
+    <a href="/games/">Games</a>
+    <a href="/used/">Used</a>
+    </div>
+  
+  <div class="content">
+    {% extends "registration/base.html" %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+
+  {% if form.errors %}
+  <p class="errors">Please correct the errors below: {{ form.non_field_errors }}</p>
+  {% endif %}
+
+  <h1>Create an account</h1>
+  
+  <form method="post" action="" class="wide">
+	{% csrf_token %}
+    <p>
+      <label for="id_username">Username:</label>
+      {% if form.username.errors %}
+        <p class="errors">{{ form.username.errors.as_text }}</p>
+      {% endif %}
+      {{ form.username }}
+    </p>
+    <p>
+      <label for="id_email">Email address:</label>
+      {% if form.email.errors %}
+        <p class="errors">{{ form.email.errors.as_text }}</p>
+      {% endif %}
+      {{ form.email }}
+    </p>
+    <p>
+      <label for="id_password1">Password:</label>
+      {% if form.password1.errors %}
+        <p class="errors">{{ form.password1.errors.as_text }}</p>
+      {% endif %}
+      {{ form.password1 }}
+    </p>
+    <p>
+      <label for="id_password2">Password (type again to catch typos):</label>
+      {% if form.password2.errors %}
+        <p class="errors">{{ form.password2.errors.as_text }}</p>
+      {% endif %}
+      {{ form.password2 }}
+    </p>
+    <p class="submit"><input type="submit" value="Register &rarr;"></p>
+  </form>
+  
+{% endblock %}
+
+{% block content-related %}
+<p>Fill out the form to the left (all fields are required), and your
+account will be created; you'll be sent an email with instructions on how
+to finish your registration.</p>
+
+<p>We'll only use your email to send you signup instructions. We hate spam
+as much as you do.</p>
+
+<p>This account will let you log into the ticket tracker, claim tickets,
+and be exempt from spam filtering.</p>
+{% endblock %}
+  </div>
+
+  <div class="footer">
+    <a href="/track/">Order Status</a>
+    <a href="/account/login/">Login</a>
+    <a href="/cart/">Cart</a>
+    <a href="/stores/">Stores</a>
+    <a href="/help/">Help</a>
+    <p>Copyright 2012 For Your Harmonics.</p>
+    <p>Please do not try ordering anything from this website, it's non-functional!</p>
+    </div>
+  </div>
+  
+</body>
+</html>

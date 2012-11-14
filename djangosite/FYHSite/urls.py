@@ -13,7 +13,6 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^$','FYHSite.site.views.home',name='home'),
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^games/', 'FYHSite.site.views.games',name='games'),
     url(r'^movie/', 'FYHSite.site.views.movie',name='movie'),
@@ -24,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^wishlist/', 'FYHSite.site.views.wishlist',name='wishlist'),
     url(r'^help/', 'FYHSite.site.views.help',name='help'),
     url(r'^stores/', 'FYHSite.site.views.stores',name='stores'),
+    url(r'^accounts/', 'FYHSite.site.views.account',name='account'),
     url(r'^account/', include('registration.urls')),
     url(r'^search/', include('haystack.urls')), 
 )

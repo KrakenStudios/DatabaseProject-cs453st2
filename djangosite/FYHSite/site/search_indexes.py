@@ -6,7 +6,7 @@ from models import Products
 class ProductIndex(SearchIndex):
     text = CharField(document=True, use_template=True)
     name = CharField(model_attr='ProductName')
-    type = CharField(model_attr='ProductType')
+    desc = CharField(model_attr='ProductDescription')
 
     def get_queryset(self):
         """
