@@ -54,7 +54,6 @@ class Customer(models.Model):
     PointsGained = models.IntegerField()
     Username = models.CharField(max_length = 20)
     Password = models.CharField(max_length = 20)
-    Salt
 
     def __unicode__(self):
         return self.FirstName + self.LastName
