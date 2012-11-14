@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'easy_maps',
     'registration',
     'haystack',
     'FYHSite.site',
@@ -157,3 +158,4 @@ DEFAULT_FROM_EMAIL='registration@foryourharmonics.com'
 HAYSTACK_SITECONF =  'FYHSite.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = '/home/cward/cs453/globalgit/djangosite/FYHSite/index.whoosh'
+EASY_MAPS_GOOGLE_KEY= 'AIzaSyDT0PBvRRcDdzS8j5h9mobSKHMAttBBOak'
