@@ -5,7 +5,10 @@ Todo:
     -----------------------------------------------------------------------------------------------
     Allow users to view purchased products
     Allow users to view preferred customer statics (points, etc)
-    
+
+    Get search box working.. Maybe POST stuff? Check randy's examples to see if 
+    something similar is there. If not, check the registration package in .local
+
     Matt - 
     Fix product types...
     -- We need to have a way to store orders for users, and the items they bought
