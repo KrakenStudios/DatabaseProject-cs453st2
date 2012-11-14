@@ -12,8 +12,11 @@ Todo:
     Matt - 
     Fix product types...
     -- We need to have a way to store orders for users, and the items they bought
-      -- also, the 'preferred customer' stuff needs to be somehow modeled
-
+        -- also, the 'preferred customer' stuff needs to be somehow modeled
+    
+    -- Check out the django docs for models - they have a foreign key function 
+       we may be able to use
+    
     --if that's done, try getting stuff und ## ideas ## at least started
 
     Diego -
