@@ -4,88 +4,217 @@ DROP DATABASE IF EXISTS cs453db2;
 #Create our cs453db2 Database
 CREATE DATABASE IF NOT EXISTS cs453db2;
 
-#create tables
+#Create Tables
+
+#Entity Tables
+
+DROP TABLE IF EXISTS `cs453db2`.`Customers` 
 CREATE TABLE `cs453db2`.`Customers`
 (
-  Customer_Id int NOT NULL AUTO_INCREMENT,
-  FrequentShopperNumber int,
-  LastName varchar(14),
-  FirstName varchar(14),
-  EmailAddress varchar(30),
-  PointsGained int,
-  Username varchar(18),
-  Password varchar(18),
-  Salt varchar(5),
-  PRIMARY KEY (Id)
+Customer_ID int NOT NULL,
+FirstName varchar(20),
+LastName varchar(20),
+PRIMARY KEY (Customer_ID)
 );
 
-CREATE TABLE `cs453db2`.`ShopsAt`
+DROP TABLE IF EXISTS `cs453db2`.`FrequentShopper`
+CREATE TABLE `cs453db2`.`FrequentShopper`
 (
-  Cust_ID int;
-  Store_ID int;
-  PRIMARY KEY (Cust_ID, Store_ID),
-  FOREIGN KEY (Cust_ID) REFERENCES Customers (Id),
-  FOREIGN KEY (Store_ID) REFERENCES Stores (Id)
+Frequent_Shopper_ID int NOT NULL,
+Email varchar(50),
+PointsGained int,
+Username varchar(20),
+Password varchar(16),
+Customer_ID int,
+PRIMARY KEY (Frequent_Shopper_ID),
+FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
 );
 
-CREATE TABLE `cs453db2`.`Stores`
+DROP TABLE IF EXISTS `cs453db2`.`Address`
+CREATE TABLE `cs453db2`.`Address`
 (
-  Store_Id int NOT NULL AUTO_INCREMENT,
-  StoreName varchar(18),
-  Latitude varchar(18),
-  Longitude varchar(18),
-  HoursOpen TEXT,
-  DaysOpen varchar(7),
-  PRIMARY KEY (Id)
+Address_ID int NOT NULL,
+AddressLineOne varchar(50),
+AddressLineTwo varchar(50),
+City varchar(50),
+State char(2),
+ZIPCode char(5),
+PRIMARY KEY (Address_ID)
 );
 
+DROP TABLE IF EXISTS `cs453db2`.`Store`
+CREATE TABLE `cs453db2`.`Store`
+(
+Store_ID int NOT NULL,
+StoreName varchar(50),
+Latitude varchar(20),
+Longitude varchar(20),
+HoursDaysOpen TEXT,
+Address_ID int,
+PRIMARY KEY (Store_ID),
+FOREIGN KEY (Address_ID) REFERENCES Address(Address_ID)
+);
+
+DROP TABLE IF EXISTS `cs453db2`.`Vendor`
+CREATE TABLE `cs453db2`.`Vendor`
+(
+Vendor_ID int NOT NULL,
+VendorName varchar(50),
+PRIMARY KEY (Vendor_ID)
+);
+
+DROP TABLE IF EXISTS `cs453db2`.`Brand`
+CREATE TABLE `cs453db2`.`Brand`
+(
+Brand_ID int NOT NULL,
+BrandName varchar(50),
+PRIMARY KEY (Brand_ID)
+);
+
+DROP TABLE IF EXISTS `cs453db2`.`Product`
+CREATE TABLE `cs453db2`.`Product`
+(
+UPCCode varchar(12) NOT NULL,
+ProductName varchar(50),
+ProductSize varchar(10),
+ProductWeight varchar(10),
+Description TEXT,
+Brand_ID int,
+PRIMARY KEY (UPCCode),
+FOREIGN KEY (Brand_ID) REFERENCES Brand(Brand_ID)
+);
+
+DROP TABLE IF EXISTS `cs453db2`.`ProductType`
+CREATE TABLE `cs453db2`.`ProductType`
+(
+Type_ID int NOT NULL,
+Department varchar(50),
+PRIMARY KEY (Type_ID)
+);
+
+DROP TABLE IF EXISTS `cs453db2`.`OrderTracking`
+CREATE TABLE `cs453db2`.`OrderTracking`
+(
+Order_ID int NOT NULL,
+Store_ID int,
+PRIMARY KEY (Order_ID),
+FOREIGN KEY (Store_ID) REFERENCES Store(Store_ID)
+);
+
+#Relational Tables
+
+#DROP TABLE IF EXISTS `cs453db2`.`FrequentlyShops`
+#CREATE TABLE `cs453db2`.`FrequentlyShops`
+#(
+#Dropped this table because FrequentShoppers can only be one customer.
+#);
+
+DROP TABLE IF EXISTS `cs453db2`.`ShipsTo`
+CREATE TABLE `cs453db2`.`ShipsTo`
+(
+Customer_ID int,
+Address_ID int,
+PRIMARY KEY (Customer_ID, Address_ID),
+FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
+FOREIGN KEY (Address_ID) REFERENCES Address(Address_ID)
+);
+
+DROP TABLE IF EXISTS `cs453db2`.`BillsTo`
+CREATE TABLE `cs453db2`.`BillsTo`
+(
+Customer_ID int,
+Address_ID int,
+PRIMARY KEY (Customer_ID, Address_ID),
+FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
+FOREIGN KEY (Address_ID) REFERENCES Address(Address_ID)
+);
+
+#DROP TABLE IF EXISTS `cs453db2`.`LocatedAt`
+#CREATE TABLE `cs453db2`.`LocatedAt`
+#(
+#Dropped this table because every store has only one location.
+#);
+
+DROP TABLE IF EXISTS `cs453db2`.`SellsTo`
 CREATE TABLE `cs453db2`.`SellsTo`
 (
-  Store_ID int,
-  Vendor_ID int,
-  PRIMARY KEY(Store_ID, Vender_ID),
-  FOREIGN KEY(Store_ID) REFERENCES Stores (Id),
-  FOREIGN KEY(Vendor_ID) REFERENCES Vendors (Id)
+Vendor_ID int,
+Store_ID int,
+PRIMARY KEY (Vendor_ID, Store_ID),
+FOREIGN KEY (Vendor_ID) REFERENCES Vendor(Vendor_ID),
+FOREIGN KEY (Store_ID) REFERENCES Store(Store_ID),
 );
 
-CREATE TABLE `cs453db2`.`Vendors`
+DROP TABLE IF EXISTS `cs453db2`.`SellsThese`
+CREATE TABLE `cs453db2`.`SellsThese`
 (
-  Vendor_Id int NOT NULL AUTO_INCREMENT,
-  VendorName varchar(18),
-  PRIMARY KEY (Id),
-  FOREIGN KEY (ProductBrand) REFERENCES Brands (ProductBrand)
+Store_ID int,
+UPCCode varchar(12),
+NumberSold int,
+Price varchar(10),
+AmountInStock int,
+PRIMARY KEY (Store_ID, UPCCode),
+FOREIGN KEY (Store_ID) REFERENCES Store(Store_ID),
+FOREIGN KEY (UPCCode) REFERENCES Product(UPCCode)
 );
 
-CREATE TABLE `cs453db2`.`Brands`
+DROP TABLE IF EXISTS `cs453db2`.`Ordered`
+CREATE TABLE `cs453db2`.`Ordered`
 (
-  Brand_Id int NOT NULL AUTO_INCREMENT,
-  BrandName varchar(30),
-  PRIMARY KEY (Id)
+Customer_ID int,
+Order_ID int,
+DateOrdered varchar(10),
+PRIMARY KEY (Customer_ID, Order_ID),
+FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
+FOREIGN KEY (Order_ID) REFERENCES OrderTracking(Order_ID)
 );
 
-CREATE TABLE `cs453db2`.`Products`
+DROP TABLE IF EXISTS `cs453db2`.`BeenOrdered`
+CREATE TABLE `cs453db2`.`BeenOrdered`
 (
-  Product_Id int NOT NULL AUTO_INCREMENT,
-  UPCCode int,
-  ProductName varchar(18),
-  ProductSize varchar(18),
-  ProductWeight varchar(18),
-  ProductDescription TEXT,
-  PRIMARY KEY (Id),
+UPCCode varchar(12),
+Order_ID int,
+NumberOrdered int,
+PRIMARY KEY (UPCCode, Order_ID),
+FOREIGN KEY (UPCCode) REFERENCES Product(UPCCode),
+FOREIGN KEY (Order_ID) REFERENCES OrderTracking(Order_ID)
 );
 
-CREATE TABLE `cs453db2`.`ProductTypes`
+DROP TABLE IF EXISTS `cs453db2`.`Restocks`
+CREATE TABLE `cs453db2`.`Restocks`
 (
-  Id int NOT NULL AUTO_INCREMENT,
-  Department varchar(18),
-  Category varchar(18),
-  SubCategory varchar(18),
-  Items varchar(18),
-  PRIMARY KEY (Id),
-  FOREIGN KEY (Items) REFERENCES Products (ProductName)
+Vendor_ID int,
+Brand_ID int,
+PRIMARY KEY (Vendor_ID, Brand_ID),
+FOREIGN KEY (Vendor_ID) REFERENCES Vendor(Vendor_ID),
+FOREIGN KEY (Brand_ID) REFERENCES Brand(Brand_ID)
 );
 
+#DROP TABLE IF EXISTS `cs453db2`.`IsABrandOf`
+#CREATE TABLE `cs453db2`.`IsABrandOf`
+#(
+#Dropped this table because each product will only be one brand.
+#);
 
+DROP TABLE IF EXISTS `cs453db2`.`InstanceOf`
+CREATE TABLE `cs453db2`.`InstanceOf`
+(
+Product_ID int,
+Type_ID int
+PRIMARY KEY (Product_ID, Type_ID)
+FOREIGN KEY () REFERENCES _()
+FOREIGN KEY () REFERENCES _()
+);
+
+DROP TABLE IF EXISTS `cs453db2`.`IsATypeOf`
+CREATE TABLE `cs453db2`.`IsATypeOf`
+(
+Type_ID int,
+Sub_Type_ID int
+PRIMARY KEY (Type_ID, Sub_Type_ID)
+FOREIGN KEY () REFERENCES _()
+FOREIGN KEY () REFERENCES _()
+);
 
 #Populate Brands
 INSERT INTO `cs453db2`.`Brands` (`ProductBrand`, `ProductsSold`, `ProductSizes`, `ProductWeight`) VALUES ('Sony', 'CD, DVD, Bluray', 'Small', '10');
