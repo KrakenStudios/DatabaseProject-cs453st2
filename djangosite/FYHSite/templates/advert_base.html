@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE/ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/; charset=utf-8" />
 <title>F.Y.H. - Music, Movies, Games, and more!</title>
 <style type="text/css">
 @import url("/static/style.css");
@@ -21,9 +21,11 @@
     </div>
   <div class="header"><a href="/"><img src="/static/logo.gif" alt="" name="logo" width="163" height="81" id="logo" style="background-color: #C6D580; display:block;" /></a> 
 
+
+
 </div>
   <div class="sidebar1">
-    <ul class="nav" >
+     <ul class="nav" >
       <li><a>Enter now!</a>
       <img src="/static/winstuff.gif" alt="Win free* stuff!" width="125" height="120"/></li>
       <li><a>Buy 2 get 1 free</a><img src="/static/buy20.gif" alt="Buy 20 Get 1 free!"/></li>
@@ -31,37 +33,35 @@
       <li><a>Contests galore!</a><img src="/static/Contests!.gif" alt="Win free stuff!"/></li>
       <li><a>Search stuff!</a></li>
       <li><p>
-      Music:  <input type="text"/>
-      Movies: <input type="text"/>
-      Games:  <input type="text"/>
+      <form action="/search/?{{term}}" method="get">
+      {% csrf_token %}
+      Search for:  <input type="text" name="q"/>
 	 <input type="submit" value="Submit"/>
      <input type="reset"/></p></li></ul>
-    <!-- end .sidebar1 --></div>
-<div class="itemlink" align="right">
-    <a href="/music/">Music</a>
-    <a href="/movie/">Movies</a>
-    <a href="/games/">Games</a>
-    <a href="/used/">Used</a>
+    </form> 
     </div>
-  
-  <div class="content">
-  <h4>Error!</h4>
-  <p> You must be logged in to view your account! </p>
-
-
     
-  </div>
-
-  <div class="footer">
-    <a href="/track/">Order Status</a>
-    <a href="/account/login/">Login</a>
-    <a href="/cart/">Cart</a>
-    <a href="/stores/">Stores</a>
-    <a href="/help/">Help</a>
-    <p>Copyright 2012 For Your Harmonics.</p>
-    <p>Please do not try ordering anything from this website, it's non-functional!</p>
+    <div class="itemlink" align="right">
+        <a href="/music/">Music</a>
+        <a href="/movie/">Movies</a>
+        <a href="/games/">Games</a>
+        <a href="/used/">Used</a>
+    </div>
+  
+    <div class="content">
+        {% block content %}
+            Congrats, you're using a template. Looks like you need to override block content, though.
+        {% endblock %}
+    </div>
+    <div class="footer">
+        <a href="/ordertrack/">Order Status</a>
+        <a href="/account/login/">Login</a>
+        <a href="/cart/">Cart</a>
+        <a href="/stores/">Stores</a>
+        <a href="/help/">Help</a>
+        <p>Copyright 2012 For Your Harmonics.</p>
+        <p>Please do not try ordering anything from this website, it's non-functional!</p>
     </div>
   </div>
-  
 </body>
-</html>
+</>

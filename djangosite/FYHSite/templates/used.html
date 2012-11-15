@@ -1,0 +1,28 @@
+{% extends "category_base.html" %}
+{% block categories %}
+    <p><a href="/music/">Music</a></p>                                          
+    <p><a href="/movie/">Movies</a></p>                                       
+    <p><a href="/games/">Games</a></p>                                       
+    <p><a href="/used/">Used</a></p>    
+      <ul>
+        <li>Games</li>
+        <li>Blueray</li>
+        <li>dvd</li>
+        <li>music</li> 
+      </ul>                                     
+ {% endblock %}
+ {% block content %} 
+  <h4>Used</h4>                                                                 
+  <p>                                                                           
+    <hr />     
+    {% for product  in Product %}
+        <div class="Product">
+        <h3>{{ product.ProductName}}</h3>
+        <h4>Price: {{ product.ProductSellPrice}}</h4>
+        <h4>Amount in Stock: {{ product.AmountInStock}}</h4>
+        <p>Description: <br/>{{ product.ProductDescription}}</p>
+        </div>
+        <hr />
+    {% endfor %}
+  </p>
+ {% endblock %}

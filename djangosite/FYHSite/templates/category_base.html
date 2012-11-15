@@ -11,6 +11,7 @@
 <body>
 
 <div class="container">
+
 <div class="headertable" id="HeaderLinks">
   	<a href="/cart/">Cart</a>
     <a href="/account/login/">Login</a>
@@ -18,51 +19,31 @@
     <a href="/track/">Order Status</a>
     <a href="/wishlist/">Wishlist</a>
     <a href="/help/">Help</a>
-    </div>
-  <div class="header"><a href="/"><img src="/static/logo.gif" alt="" name="logo" width="163" height="81" id="logo" style="background-color: #C6D580; display:block;" /></a> 
+</div>
 
-
-
+<div class="header">
+    <a href="/"><img src="/static/logo.gif" alt="" name="logo" width="163" height="81" id="logo" style="background-color: #C6D580; display:block;" /></a> 
 </div>
  
 <div class="sidebar1">
-    <p><a href="/music/">Music</a></p>
-    <p><a href="/movie/">Movies</a></p>
-    <ul>
-      <li>New Releases</li>
-      <li>Action</li>
-      <li>Comedy</li>
+    {% block categories %}
+    {% endblock %}
+</div>
 
-      <li>Documentary</li>
-      <li>Drama</li>
-      <li>Horror</li>
-    </ul>
-    <p><a href="/games/">Games</a></p>
-    <p><a href="/used/">Used</a></p>
-    </div>
-    <div class="itemlink" align="right">
+<div class="itemlink" align="right">
     <a href="/music/">Music</a>
     <a href="/movie/">Movies</a>
     <a href="/games/">Games</a>
     <a href="/used/">Used</a>
 </div> 
-<div class="content">
-  <h4>Movies</h4>
-  <p>
-    <hr />
-    {% for product in Products %}
-            <div class="Product">
-            <h3>{{ product.ProductName}}</h3>
-            <h4>Price: {{ product.ProductSellPrice}}</h4>
-            <h4>Amount in Stock: {{ product.AmountInStock}}</h4>
-            <p>Description: <br/>{{ product.ProductDescription}}</p>
-            </div>
-            <hr />
-    {% endfor %}
-  </p>
-  </div>
 
-  <div class="footer">
+<div class="content">
+    {% block content %}
+        Congrats, you're using a template. Looks like you need to override block content, though.
+    {% endblock %}
+</div>
+
+<div class="footer">
     <a href="ordertrack/">Order Status</a>
         <a href="/account/login/">Login</a>
     <a href="/cart/">Cart</a>
@@ -71,7 +52,7 @@
     <p>Copyright 2012 For Your Harmonics.</p>
     <p>Please do not try ordering anything from this website, it's non-functional!</p>
     </div>
-  </div>
+</div>
   
 </body>
 </>
