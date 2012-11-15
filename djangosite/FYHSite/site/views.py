@@ -1,7 +1,6 @@
 from models import Products
 from django.shortcuts import render_to_response
 
-
 def home(request):
     return render_to_response('index.html')
 
@@ -44,7 +43,10 @@ def wishlist(request):
     return render_to_response('wishlist.html')
 
 def stores(request):
-    return render_to_response('stores.html')
+    city = request.GET.get('city')
+    address = request.GET.get('address')
+    #country = request.GET.get('country')
+    return render_to_response('stores.html',city, address)
 
 def account(request):
     return render_to_response('account.html')

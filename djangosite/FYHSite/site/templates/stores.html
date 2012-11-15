@@ -59,24 +59,28 @@
     <a href="/games/">Games</a>
     <a href="/used/">Used</a>
     </div>
-  
   <div class="content">
-  <h4>Store Locations</h4>
+{% load easy_maps_tags cache %}                                                 
+{% block html %}                                                                
+    <div class="content">                                                       
+    <h4>Store Location</h4>                                                     
+    </p>                                                                        
+    <ul><p>   
   <p> Please Enter an city, state, zip-code, or longitude and latitude, and if desired, the radius in which you would like to search for locations. </p>
   <ul><p>
-  <li>City:  <input Type="text"/></li></p>
-  <li>State:  <input Type="text"/></li></p>
+  <form action="." method="push">
+  <li>City:  <input Type="text" name="city"/></li></p>
+  <li>Address:  <input Type="text" name="address"/></li></p>
+  <!--<li>Country:  <input Type="text" name="country"/></li></p>-->
+  <!--<li>State:  <input Type="text"/></li></p>
   <li>ZIP:  <input Type="text"/></li></p>
   <li>Longitude:  <input Type="text"/></li></p>
-  <li>Latitude:  <input Type="text"/></li></p>
+  <li>Latitude:  <input Type="text"/></li></p>-->
   <input type="submit" value="Find Stores"/>
-<!--</ul>
-    <div id="map_canvas" style="width:100%; height:100%"></div>
-  </div>-->
-{% load easy_maps_tags %}                                                       
-{% easy_map "United States, Sylva, 210 Walmart Plaza" 500 500 %}                
-{% easy_map address 200 200 5 using 'map.html' %}  
-
+  </form>
+  </ul>
+    {% easy_map 'United States, {{city}}, {{address}}' 300 400 %}
+{% endblock %}
   <div class="footer">
     <a href="/ordertrack/">Order Status</a>
     <a href="/account/login/">Login</a>
