@@ -13,6 +13,7 @@ class FrequentShopper(models.Model):
     PointsGained = models.IntegerField()
     Username = models.CharField(max_length = 20)
     Password = models.CharField(max_length = 16)
+    Customer_ID = models.IntegerField()
 
     def __unicode__(self):
         return self.Username
@@ -59,6 +60,7 @@ class Product(models.Model):
     ProductSize = models.CharField(max_length = 10)
     ProductWeight = models.CharField(max_length = 10)
     ProductDescription = models.TextField()
+    Brand_ID = models.IntegerField()
     
     def __unicode__(self):
         return self.ProductName
@@ -76,3 +78,71 @@ class OrderTracking(models.Model):
 
     def __unicode__(self):
         return self.Order_ID
+
+class ShipsTo(models.Model):
+    Customer_ID = models.IntegerField()
+    Address_ID = models.IntegerField()
+
+    def __unicode__(self):
+        return Customer_ID + Address_ID
+
+class BillsTo(models.Model):
+    Customer_ID = models.IntegerField()
+    Address_ID = models.IntegerField()
+
+    def __unicode__(self):
+        return Customer_ID + Address_ID
+
+class SellsTo(models.Model):
+    Vendor_ID = models.IntegerField()
+    Store_ID = models.IntegerField()
+
+    def __unicode__(self):
+        return Vendor_ID + Store_ID
+
+class SellsThese(models.Model):
+    Store_ID = models.IntegerField()
+    UPCCode = models.CharField(length = 12)
+    NumberSold = models.IntegerField()
+    Price = models.CharField(max_length = 10)
+    AmountInStock = models.IntegerField()
+
+    def __unicode__(self):
+        return Store_ID + UPCCode + Price
+
+class Ordered(models.Model):
+    Customer_ID = models.IntegerField()
+    Order_ID = models.IntegerField()
+    DateOrdered = models.CharField(max_length = 10)
+
+    def __unicode__(self):
+        return Customer_ID + Order_ID + DateOrdered
+
+class BeenOrdered(models.Model):
+    UPCCode = models.CharField(length = 12)
+    Order_ID = models.IntegerField()
+    NumberOrdered = models.IntegerField()
+
+    def __unicode__(self):
+        return UPCCode + Order_ID + NumberOrdered
+
+class Restocks(models.Model):
+    Vendor_ID = models.IntegerField()
+    Brand_ID = models.IntegerField()
+
+    def __unicode__(self):
+        return Vendor_ID + Brand_ID
+
+class InstanceOf(models.Model):
+    Product_ID = models.IntegerField()
+    Type_ID + models.IntegerField()
+
+    def __unicode__(self):
+        return Product_ID + Type_ID
+
+class IsATypeOf(models.Model):
+    Type_ID = models.IntegerField()
+    Sub_Type_ID = models.IntegerField()
+
+    def __unicode__(self):
+        return Type_ID + Sub_Type_Id
