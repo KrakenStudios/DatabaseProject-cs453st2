@@ -1,7 +1,7 @@
 import datetime
 from haystack.indexes import *
 from haystack import site
-from models import Products
+from models import Product
 
 class ProductIndex(SearchIndex):
     text = CharField(document=True, use_template=True)
@@ -13,6 +13,6 @@ class ProductIndex(SearchIndex):
         This is used when the entire index for model is updated, and should only include
         public entries
         """
-        return Products.objects.all()
+        return Product.objects.all()
 
-site.register(Products, ProductIndex)
+site.register(Product, ProductIndex)

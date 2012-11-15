@@ -23,8 +23,8 @@ class Address(models.Model):
     AddressLineOne = models.CharField(max_length = 50)
     AddressLineTwo = models.CharField(max_length = 50)
     City = models.CharField(max_length = 50)
-    State = models.CharField(length = 2)
-    ZIPCode = models.CharField(length = 5)
+    State = models.CharField(max_length = 2)
+    ZIPCode = models.CharField(max_length = 5)
 
     def __unicode__(self):
         return self.AddressLineOne + AddressLineTwo + City + State + ZIPCode
@@ -55,7 +55,7 @@ class Brand(models.Model):
         return self.BrandName
 
 class Product(models.Model):
-    UPCCode = models.CharField(length = 12)
+    UPCCode = models.CharField(max_length = 12)
     ProductName = models.CharField(max_length = 50)
     ProductSize = models.CharField(max_length = 10)
     ProductWeight = models.CharField(max_length = 10)
@@ -102,7 +102,7 @@ class SellsTo(models.Model):
 
 class SellsThese(models.Model):
     Store_ID = models.IntegerField()
-    UPCCode = models.CharField(length = 12)
+    UPCCode = models.CharField(max_length = 12)
     NumberSold = models.IntegerField()
     Price = models.CharField(max_length = 10)
     AmountInStock = models.IntegerField()
@@ -119,7 +119,7 @@ class Ordered(models.Model):
         return Customer_ID + Order_ID + DateOrdered
 
 class BeenOrdered(models.Model):
-    UPCCode = models.CharField(length = 12)
+    UPCCode = models.CharField(max_length = 12)
     Order_ID = models.IntegerField()
     NumberOrdered = models.IntegerField()
 
@@ -135,7 +135,7 @@ class Restocks(models.Model):
 
 class InstanceOf(models.Model):
     Product_ID = models.IntegerField()
-    Type_ID + models.IntegerField()
+    Type_ID = models.IntegerField()
 
     def __unicode__(self):
         return Product_ID + Type_ID

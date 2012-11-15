@@ -6,23 +6,9 @@
 <style type="text/css">
 @import url("/static/style.css");
 </style>
-<script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT0PBvRRcDdzS8j5h9mobSKHMAttBBOak&sensor=false">
-    </script>
-    <script type="text/javascript">
-      function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(35.313, -83.176),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            mapOptions);
-      }
-    </script>
 </head>
 
-<body onload="initialize()">
+<body>
 
 <div class="container">
 <div class="headertable" id="HeaderLinks">
@@ -62,15 +48,14 @@
   <div class="content">
 {% load easy_maps_tags cache %}                                                 
 {% block html %}                                                                
-    <div class="content">                                                       
     <h4>Store Location</h4>                                                     
     </p>                                                                        
     <ul><p>   
   <p> Please Enter an city, state, zip-code, or longitude and latitude, and if desired, the radius in which you would like to search for locations. </p>
   <ul><p>
   <form action="." method="push">
-  <li>City:  <input Type="text" name="city"/></li></p>
-  <li>Address:  <input Type="text" name="address"/></li></p>
+  <li>City:  <input Type="text"/></li></p>
+  <li>Address:  <input Type="text"/></li></p>
   <!--<li>Country:  <input Type="text" name="country"/></li></p>-->
   <!--<li>State:  <input Type="text"/></li></p>
   <li>ZIP:  <input Type="text"/></li></p>
@@ -79,8 +64,9 @@
   <input type="submit" value="Find Stores"/>
   </form>
   </ul>
-    {% easy_map 'United States, {{city}}, {{address}}' 300 400 %}
+    {% easy_map 'United States, {{city}}, {{address}}' 800 400 %}
 {% endblock %}
+  </div>
   <div class="footer">
     <a href="/ordertrack/">Order Status</a>
     <a href="/account/login/">Login</a>
@@ -91,6 +77,5 @@
     <p>Please do not try ordering anything from this website, it's non-functional!</p>
     </div>
   </div>
-  
 </body>
 </>
