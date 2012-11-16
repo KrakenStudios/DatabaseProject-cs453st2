@@ -38,6 +38,12 @@
 </div>
 
 <div class="itemlink" align="right">
+    <form action="/search/?{{term}}" method="get">                            
+        {% csrf_token %}                                                          
+        Search for:  <input type="text" name="q"/>                                
+        <input type="submit" value="Submit"/>                                      
+        <input type="reset"/></p></li></ul>                                        
+    </form> 
     <a href="/music/">Music</a>
     <a href="/movie/">Movies</a>
     <a href="/games/">Games</a>
