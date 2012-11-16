@@ -104,6 +104,11 @@ def stores(request):
     mapaddress = str(city) + ','+ str(address)
     return render_to_response('stores.html', {'city':city, 'address':address, 
                                 'mapaddress':mapaddress, 'usergreet':usergreet})
+def deactivate(request):
+    if request.user.is_authenticated():
+        request.user.is_active = 0
+        request.user.save()
+    return render_to_response('deactivated.html')
 
 def account(request):
     isauthed = 1
