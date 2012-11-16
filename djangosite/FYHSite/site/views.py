@@ -43,10 +43,11 @@ def wishlist(request):
     return render_to_response('wishlist.html')
 
 def stores(request):
-    address = request.GET.get('address')
     city = request.GET.get('city')
-    #address = request.GET.get('address')
-    #country = request.GET.get('country')
+    address = request.GET.get('address')
+    country = request.GET.get('country')
+    latitude = request.GET.get('latitude')
+    longitude = request.GET.get('longitude')
     return render_to_response('stores.html', {'city':city, 'address':address})
 
 def account(request):

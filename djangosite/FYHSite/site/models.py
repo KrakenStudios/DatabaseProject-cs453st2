@@ -1,23 +1,23 @@
 from django.db import models
-class Customer(models.Model):
-    Customer_ID = models.IntegerField()
-    FirstName = models.CharField(max_length = 20)
-    LastName = models.CharField(max_length = 20)
-    
-    def __unicode__(self):
-        return self.FirstName + self.LastName
 
 class FrequentShopper(models.Model):
-    Frequent_Shopper_ID = models.IntegerField()
+    Frequent_Shopper_ID = models.IntegerField(unique=True)
     Email = models.CharField(max_length = 50)
     PointsGained = models.IntegerField()
     Username = models.CharField(max_length = 20)
     Password = models.CharField(max_length = 16)
-    Customer_ID = models.IntegerField()
+    #Customer_ID = models.IntegerField()
 
     def __unicode__(self):
         return self.Username
+class Customer(models.Model):
+    Customer_ID = models.IntegerField()
+    FS_ID = models.ForeignKey(FrequentShopper, to_field='Frequent_Shopper_ID')
+    FirstName = models.CharField(max_length = 20)
+    LastName = models.CharField(max_length = 20)
 
+    def __unicode__(self):
+        return self.FirstName + self.LastName
 class Address(models.Model):
     Address_ID = models.IntegerField()
     AddressLineOne = models.CharField(max_length = 50)
@@ -54,23 +54,39 @@ class Brand(models.Model):
     def __unicode__(self):
         return self.BrandName
 
+class ProductType(models.Model):                                                
+    Type_ID = models.IntegerField(unique=True)                                             
+    Department = models.CharField(max_length = 50)                              
+                                                                                
+    def __unicode__(self):                                                      
+        return self.Department                                                  
+                                                                                
+class InstanceOf(models.Model):                                                 
+    Product_ID = models.CharField(max_length = 12)                                   
+    Type_ID = models.ForeignKey(ProductType, to_field = 'Type_ID', unique=True)               
+                                                                                
+    def __unicode__(self):                                                      
+        return Product_ID + Type_ID                   
+
 class Product(models.Model):
-    UPCCode = models.CharField(max_length = 12)
+    UPCCode = models.CharField(max_length = 12, unique=True)
     ProductName = models.CharField(max_length = 50)
     ProductSize = models.CharField(max_length = 10)
     ProductWeight = models.CharField(max_length = 10)
     ProductDescription = models.TextField()
+    ProductPrice = models.DecimalField(max_digits=3, decimal_places=2)
+    ProductType = models.ForeignKey(InstanceOf, to_field = 'Type_ID')
     Brand_ID = models.IntegerField()
     
     def __unicode__(self):
         return self.ProductName
 
-class ProductType(models.Model):
-    Type_ID = models.IntegerField()
-    Department = models.CharField(max_length = 50)
-
-    def __unicode__(self):
-        return self.Department
+class IsATypeOf(models.Model):                                                  
+    Type_ID = models.IntegerField()                                             
+    Sub_Type_ID = models.IntegerField()                                         
+                                                                                
+    def __unicode__(self):                                                      
+        return Type_ID + Sub_Type_Id           
 
 class OrderTracking(models.Model):
     Order_ID = models.IntegerField()
@@ -132,17 +148,3 @@ class Restocks(models.Model):
 
     def __unicode__(self):
         return Vendor_ID + Brand_ID
-
-class InstanceOf(models.Model):
-    Product_ID = models.IntegerField()
-    Type_ID = models.IntegerField()
-
-    def __unicode__(self):
-        return Product_ID + Type_ID
-
-class IsATypeOf(models.Model):
-    Type_ID = models.IntegerField()
-    Sub_Type_ID = models.IntegerField()
-
-    def __unicode__(self):
-        return Type_ID + Sub_Type_Id

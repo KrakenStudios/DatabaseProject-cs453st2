@@ -106,8 +106,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'FYHSite.urls'
 
 TEMPLATE_DIRS = (
-   # "site/templates",
-    "templates",
+   "site/templates",
 )
 
 INSTALLED_APPS = (
