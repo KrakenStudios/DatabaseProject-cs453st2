@@ -2,7 +2,7 @@
 
 {% block content %}
     {% if usergreet %}
-        <h1>Welcome back, {{user}}!</h1>
+        <h3>Welcome back, {{user}}!</h1>
         <div class="login">
         <p> What would you like to do? </p>
         <ul>
@@ -15,7 +15,7 @@
         </ul>
         </div>
     {% else %}
-        <h1> Error! </h1>
+        <h2> Error! </h2>
         <p> You must be logged in to view your account! </p>
     {% endif %}
 {% endblock %}
