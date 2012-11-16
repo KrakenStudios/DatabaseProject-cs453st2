@@ -1,6 +1,20 @@
 {% extends "advert_base.html" %}
 
 {% block content %}
-    <h1> Error! </h1>
-    <p> You must be logged in to view your account! </p>
+    {% if usergreet %}
+        <h1>Welcome back, {{user}}!</h1>
+        <div class="login">
+        <p> What would you like to do? </p>
+        <ul>
+           <li><a href="/cart/">View your cart.</a></li>
+           <li><a href="/wishlist/">View your wishlist.</a></li>
+           <li><a href="/ordertrack/">View placed orders.</a></li>
+           <li><a href="/account/password/change/">Change your password.</a></li>
+           <li><a href="/account/logout/">Logout of your account.</a></li>
+        </ul>
+        </div>
+    {% else %}
+        <h1> Error! </h1>
+        <p> You must be logged in to view your account! </p>
+    {% endif %}
 {% endblock %}

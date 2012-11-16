@@ -2,57 +2,125 @@ from models import Product
 from django.shortcuts import render_to_response
 
 def home(request):
-    return render_to_response('index.html')
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
+    return render_to_response('index.html', {'usergreet':usergreet})
 
 def register(request):
-    return render_to_response('registration_form.html')
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
+    return render_to_response('registration_form.html', {'usergreet':usergreet})
 
 def music(request):
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
     entries = Product.objects.all()[:10]
-    return render_to_response('music.html', {'Product' : entries})
+    return render_to_response('music.html', {'Product' : entries, 
+                                                       'usergreet' : usergreet})
 
 def movie(request):
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
     entries = Product.objects.all()[:10]
-    return render_to_response('movie.html', {'Product' :entries})
+    return render_to_response('movie.html', {'Product' :entries, 
+                                                       'usergreet' : usergreet})
 
 def dvd(request):
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
     entries = Product.objects.all()[:10]
-    return render_to_response('dvd.html', {'Product' : entries})
+    return render_to_response('dvd.html', {'Product' : entries, 
+                                                       'usergreet' : usergreet})
 
 def bluray(request):
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
     entries = Product.objects.all()[:10]
-    return render_to_response('bluray.html', {'Product' : entries})
+    return render_to_response('bluray.html', {'Product' : entries, 
+                                                       'usergreet' : usergreet})
 
 def used(request):
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
     entries = Product.objects.all()[:10]
-    return render_to_response('used.html', {'Product':entries})
+    return render_to_response('used.html', {'Product' : entries, 
+                                                       'usergreet' : usergreet})
 
 def help(request):
-    return render_to_response('help.html')
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
+    return render_to_response('help.html', {'usergreet':usergreet})
 
 def cart(request):
-    return render_to_response('cart.html')
+    isauthed = 0
+    usergreet = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        usergreet = 'Hello, ' + request.user.username
+    return render_to_response('cart.html',{'usergreet':usergreet,
+                                                           'isauthed':isauthed})
 
 def login(request):
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
     return render_to_response('login.html')
 
 def track(request):
-    return render_to_response('ordertrack.html')
+    isauthed = 1
+    usergreet = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        usergreet = 'Hello, ' + request.user.username
+    return render_to_response('ordertrack.html', {'usergreet':usergreet,
+                                                           'isauthed':isauthed})
 
 def wishlist(request):
-    return render_to_response('wishlist.html')
+    isauthed = 1
+    usergreet = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        usergreet = 'Hello, ' + request.user.username
+    return render_to_response('wishlist.html', {'usergreet':usergreet,
+                                                           'isauthed':isauthed})
 
 def stores(request):
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
     city = request.GET.get('city')
     address = request.GET.get('address')
     country = request.GET.get('country')
     latitude = request.GET.get('latitude')
     longitude = request.GET.get('longitude')
-    return render_to_response('stores.html', {'city':city, 'address':address})
+    mapaddress = str(city) + ','+ str(address)
+    return render_to_response('stores.html', {'city':city, 'address':address, 
+                                'mapaddress':mapaddress, 'usergreet':usergreet})
 
 def account(request):
-    return render_to_response('account.html')
+    isauthed = 1
+    usergreet = 0
+    user = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        user = request.user.username
+        usergreet = 'Hello, ' + user
+    return render_to_response('account.html', {'usergreet':usergreet, 
+                'isauthed':isauthed, 'user':user})
 
 def games(request):
+    usergreet = 0
+    if request.user.is_authenticated():
+        usergreet = 'Hello, ' + request.user.username
+    
     entries = Product.objects.all()[:10]
-    return render_to_response('games.html', {'Product' : entries})
+    return render_to_response('games.html', {'Product' : entries, 
+                                                         'usergreet':usergreet})

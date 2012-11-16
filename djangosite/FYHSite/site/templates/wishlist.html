@@ -1,6 +1,12 @@
 {% extends "advert_base.html" %}
-{% block content %}
-  <h4>Error!</h4>
-  <p> You must be logged in to view your wishlist! </p>
-{% endblock %}
 
+{% block content %}
+    <h4>Wishlist</h4>
+    <div class="login">
+    {% if usergreet %}
+        <p>You don't have any items in your wishlist.</p>
+    {% else %}
+        <p>Sorry, but you must be logged in to view your wishlist!</p>
+    {% endif %}
+    </div>
+{% endblock %}

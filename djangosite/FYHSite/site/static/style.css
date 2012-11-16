@@ -30,6 +30,17 @@ h1, h2, h3, h4, h5, h6, p {
 a img { 
 	border: none;
 }
+.login a:link {
+	color:#FFF;
+	text-decoration: underline;
+}
+.login a:visited {
+	color: blue;
+	text-decoration: underline;
+}
+.login a:hover, a:active, a:focus {
+	text-decoration: none;
+}
 
 a:link {
 	color:#FFF;

@@ -1,9 +1,12 @@
 {% extends "advert_base.html" %}
+
 {% block content %}
-  <h4>Order Status</h4>
-  <p> Please Enter your Order Number Below to track your order. </p>
-  <ul><p>
-  <li>Order #:  <input Type="text"/></li></p>
-  <input type="submit" value="Check Status"/>
-</ul>
+    <h4>Orders</h4>
+    <div class="login">
+    {% if usergreet %}
+        <p>You haven't placed any orders at this time.</p>
+    {% else %}
+        <p>Sorry, but you must be logged in to view your orders!</p>
+    {% endif %}
+    </div>
 {% endblock %}

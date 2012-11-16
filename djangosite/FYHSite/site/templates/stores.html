@@ -8,16 +8,15 @@
   <p> Please Enter an city, state, zip-code, or longitude and latitude, and if desired, the radius in which you would like to search for locations. </p>
   <ul><p>
   <form action="." method="push">
-  <li>City:  <input Type="text"/></li></p>
-  <li>Address:  <input Type="text"/></li></p>
-  <!--<li>Country:  <input Type="text" name="country"/></li></p>-->
-  <!--<li>State:  <input Type="text"/></li></p>
+  <li>Address:  <input Type="text" name="address"/></li></p>
+  <li>City:  <input Type="text" name="city"/></li></p>
+  <li>State:  <input Type="text"/></li></p>
   <li>ZIP:  <input Type="text"/></li></p>
-  <li>Longitude:  <input Type="text"/></li></p>
+  <!--<li>Longitude:  <input Type="text"/></li></p>
   <li>Latitude:  <input Type="text"/></li></p>-->
   <input type="submit" value="Find Stores"/>
   </form>
   </ul>
-    {% easy_map 'United States, {{city}}, {{address}}' 800 400 %}
+    {% easy_map mapaddress 800 400 %}
 {% endblock %}
 {% endblock %}

@@ -55,7 +55,7 @@ class Brand(models.Model):
         return self.BrandName
 
 class ProductType(models.Model):                                                
-    Type_ID = models.IntegerField(unique=True)                                             
+    Type_ID = models.IntegerField(primary_key=True)                                             
     Department = models.CharField(max_length = 50)                              
                                                                                 
     def __unicode__(self):                                                      
@@ -64,10 +64,10 @@ class ProductType(models.Model):
 class InstanceOf(models.Model):                                                 
     #Product_ID = models.CharField(max_length = 12, primary_key=True)                                   
     Product_ID = models.ForeignKey('Product', primary_key=True)                                  
-    Type_ID = models.ForeignKey(ProductType, to_field = 'Type_ID', unique=True)               
+    Type_ID = models.ForeignKey('ProductType',unique=True)#, to_field = 'Type_ID')               
                                                                                 
     def __unicode__(self):                                                      
-        return self.Product_ID                   
+        return str(self.Type_ID)
 
 class Product(models.Model):
     UPCCode = models.CharField(max_length = 12, primary_key=True)

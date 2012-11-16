@@ -12,13 +12,21 @@
 
 <div class="container">
 <div class="headertable" id="HeaderLinks">
-  	<a href="/cart/">Cart</a>
-    <a href="/account/login/">Login</a>
+  	{% if usergreet %}
+        <FONT COLOR="white">{{usergreet}}</FONT>
+    {% else %}
+        <a href="/account/login/">Login</a>
+    {% endif %}
+    <a href="/cart/">Cart</a>
     <a href="/accounts/">My Account</a>
     <a href="/track/">Order Status</a>
     <a href="/wishlist/">Wishlist</a>
     <a href="/help/">Help</a>
+    {% if usergreet %}
+        <a href="/account/logout/">Logout</a>
+    {% endif %}
     </div>
+
   <div class="header"><a href="/"><img src="/static/logo.gif" alt="" name="logo" width="163" height="81" id="logo" style="background-color: #C6D580; display:block;" /></a> 
 
 
@@ -54,8 +62,11 @@
         {% endblock %}
     </div>
     <div class="footer">
+        {% if usergreet %}
+            <a href="/account/logout/">Logout</a>
+        {% endif %}
         <a href="/ordertrack/">Order Status</a>
-        <a href="/account/login/">Login</a>
+        <!--<a href="/account/login/">Login</a>-->
         <a href="/cart/">Cart</a>
         <a href="/stores/">Stores</a>
         <a href="/help/">Help</a>

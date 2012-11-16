@@ -2,5 +2,11 @@
 
 {% block content %}
     <h4>Shopping Cart</h4>
-    <P>It seems as though you have no items!</P>
+    <div class="login">
+    {% if usergreet %}
+        <p>You don't have any items in your cart.</p>
+    {% else %}
+        <p>Sorry, but you must be logged in to view your cart!</p>
+    {% endif %}
+    </div>
 {% endblock %}

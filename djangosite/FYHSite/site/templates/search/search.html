@@ -14,12 +14,14 @@
 
     {% if query %}
     <h3>Results</h3>
+    <div class="login">
     {% for result in page.object_list %}
         <p><a href="{{ result.object.get_absolute_url }}">{{ result.object.ProductName }}</a></p>
         <p>Description: {{ result.object.ProductDescription }} </p>
     {% empty %}
     <p>No results found.</p>
     {% endfor %}
+    </div>
     {% endif %}
     </form>
     {% endblock %}   
