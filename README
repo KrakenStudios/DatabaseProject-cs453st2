@@ -1,21 +1,16 @@
 Todo:
-    me (chris)
-    Fix accounts page to allow users to view own data
-    ^^ Check: https://docs.djangoproject.com/en/1.2/topics/auth/#django.contrib.auth.models.User ^^
-    -----------------------------------------------------------------------------------------------
+    me (chriS)
     Allow users to view purchased products
     Allow users to view preferred customer statics (points, etc)
 
-    Get search box working.. Maybe POST stuff? Check randy's examples to see if 
-    something similar is there. If not, check the registration package in .local
-
+    
     Matt - 
     Fix product types...
     -- We need to have a way to store orders for users, and the items they bought
         -- also, the 'preferred customer' stuff needs to be somehow modeled
     
     -- Check out the django docs for models - they have a foreign key function 
-       we may be able to use
+       we have able to use
     
     --if that's done, try getting stuff und ## ideas ## at least started
 
