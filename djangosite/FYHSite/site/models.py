@@ -62,14 +62,15 @@ class ProductType(models.Model):
         return self.Department                                                  
                                                                                 
 class InstanceOf(models.Model):                                                 
-    Product_ID = models.CharField(max_length = 12)                                   
+    #Product_ID = models.CharField(max_length = 12, primary_key=True)                                   
+    Product_ID = models.ForeignKey('Product', primary_key=True)                                  
     Type_ID = models.ForeignKey(ProductType, to_field = 'Type_ID', unique=True)               
                                                                                 
     def __unicode__(self):                                                      
-        return Product_ID + Type_ID                   
+        return self.Product_ID                   
 
 class Product(models.Model):
-    UPCCode = models.CharField(max_length = 12, unique=True)
+    UPCCode = models.CharField(max_length = 12, primary_key=True)
     ProductName = models.CharField(max_length = 50)
     ProductSize = models.CharField(max_length = 10)
     ProductWeight = models.CharField(max_length = 10)
