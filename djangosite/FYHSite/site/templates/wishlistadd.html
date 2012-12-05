@@ -1,0 +1,12 @@
+{% extends "advert_base.html" %}
+
+{% block content %}
+    <div class="login">
+    {% if usergreet %}
+        <h3>Added to wishlist!</h3>
+        <p>Item(s) successfully added to the wishlist.</p>
+    {% else %}
+        <p>Sorry, but you must be logged in to add/remove items!</p>
+    {% endif %}
+    </div>
+{% endblock %}

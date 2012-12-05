@@ -1,12 +1,31 @@
 {% extends "advert_base.html" %}
 
 {% block content %}
-    <h4>Wishlist</h4>
     <div class="login">
     {% if usergreet %}
-        <p>You don't have any items in your wishlist.</p>
+        
+        <h3>Wishlist</h3>
+        <table>
+            <tr>
+                <th>ProductID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+
+                <th>Total Price</th>
+            </tr>
+            {% for item in cart.items %}
+            <tr>
+                <td>{{ item.0 }}</td>
+                <td>{{ item.1.0 }}</td>
+                <td>{{ item.1.1 }}</td>
+                <td>{{ item.1.2 }}</td>
+                <td>{{ item.1.3 }}</td>
+            </tr>
+            {% endfor%}
+        </table>
     {% else %}
-        <p>Sorry, but you must be logged in to view your wishlist!</p>
+        <p>Sorry, but you must be logged in to view your cart!</p>
     {% endif %}
     </div>
 {% endblock %}

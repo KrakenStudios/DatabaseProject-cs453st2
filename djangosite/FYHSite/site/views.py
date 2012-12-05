@@ -85,15 +85,6 @@ def help(request):
         usergreet = 'Hello, ' + request.user.username
     return render_to_response('help.html', {'usergreet':usergreet})
 
-def cart(request):
-    isauthed = 0
-    usergreet = 0
-    if request.user.is_authenticated():
-        isauthed = 1
-        usergreet = 'Hello, ' + request.user.username
-    return render_to_response('cart.html',{'usergreet':usergreet,
-                                                           'isauthed':isauthed})
-
 def login(request):
     usergreet = 0
     if request.user.is_authenticated():
@@ -221,3 +212,50 @@ def get_cart(request):
         cart = request.session.get('cart',{})
         print cart
     return render_to_response('cart.html', {'cart':cart,'usergreet':usergreet, 'isauthed':isauthed})
+
+
+def add_to_wishlist(request):
+    isauthed = 1
+    usergreet = 0
+    user = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        user = request.user.username
+        usergreet = 'Hello, ' + user
+
+    productID = request.GET.get('prodID')
+    product = Product.objects.get(pk=productID)
+    wishlist = request.session.get('wishlist', {})
+    name = product.ProductName
+    quantity = int(request.GET.get('quantity'))
+    price = product.ProductPrice
+    totalPrice = quantity*price
+    wishlist[productID] = name,quantity,price,totalPrice
+    request.session['wishlist']=wishlist
+    return render_to_response('wishlistadd.html',{'usergreet':usergreet})
+
+def remove_from_wishlist(request,product_id,quantity):
+    isauthed = 1
+    usergreet = 0
+    user = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        user = request.user.username
+        usergreet = 'Hello, ' + user
+
+    productID = request.GET.get('prodID')
+    product = Product.objects.get(pk=productID)
+    wishlist = request.session.get('wishlist', {})
+    wishlist[productID] = 0
+    request.session['wishlist']=wishlist
+    return render_to_response('wishlistadd.html',{'usergreet':usergreet})
+
+def get_wishlist(request):
+    isauthed = 0
+    usergreet = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        usergreet = 'Hello, ' + request.user.username
+        cart = request.session.get('wishlist',{})
+        print cart
+    return render_to_response('wishlist.html', {'cart':cart,'usergreet':usergreet, 'isauthed':isauthed})
