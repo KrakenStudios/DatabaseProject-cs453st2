@@ -1,9 +1,9 @@
 {% extends "category_base.html" %}
 {% block categories %}
-    <p><a href="/music/">Music</a></p>                                          
-    <p><a href="/movie/">Movies</a></p>                                       
-    <p><a href="/games/">Games</a></p>                                       
-    <p><a href="/used/">Used</a></p>    
+    <p><a href="/Music/">Music</a></p>                                          
+    <p><a href="/Movies/">Movies</a></p>                                       
+    <p><a href="/Games/">Games</a></p>                                       
+    <p><a href="/Used/">Used</a></p>    
       <ul>
         <li>Games</li>
         <li>Blueray</li>
@@ -18,7 +18,7 @@
     {% for product  in Product %}
         {% if product.ProductType_id == 3 %}
             <div class="Product">
-            <h3>{{ product.ProductName}}</h3>
+            <h3><a href="/Used/{{product.UPCCode}}/">{{ product.ProductName}}</a></h3>
             <p>Price: {{ product.ProductPrice}}</p>
             <p>Description: <br/>{{ product.ProductDescription}}</p>
             </div>

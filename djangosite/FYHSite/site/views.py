@@ -1,7 +1,7 @@
 from models import Store
 from models import Product
 from django.shortcuts import render_to_response
-
+from django.http import HttpResponse
 def home(request):
     usergreet = 0
     if request.user.is_authenticated():
@@ -21,6 +21,14 @@ def music(request):
     entries = Product.objects.all()[:10]
     return render_to_response('music.html', {'Product' : entries, 
                                                        'usergreet' : usergreet})
+def musicdetail(request, music_id):                                             
+    usergreet = 0                                                               
+    if request.user.is_authenticated():                                         
+        usergreet = 'Hello, ' + request.user.username                           
+    movie = Product.objects.get(pk=music_id)                                    
+    return render_to_response('proddetail.html', {'product' : movie,            
+                                                       'usergreet' : usergreet})
+
 
 def movie(request):
     usergreet = 0
@@ -30,6 +38,13 @@ def movie(request):
     return render_to_response('movie.html', {'Product' :entries, 
                                                        'usergreet' : usergreet})
 
+def moviedetail(request, movie_id):                                                             
+    usergreet = 0                                                               
+    if request.user.is_authenticated():                                         
+        usergreet = 'Hello, ' + request.user.username                           
+    movie = Product.objects.get(pk=movie_id)                                        
+    return render_to_response('proddetail.html', {'product' : movie,                
+                                                       'usergreet' : usergreet})
 def dvd(request):
     usergreet = 0
     if request.user.is_authenticated():
@@ -53,6 +68,15 @@ def used(request):
     entries = Product.objects.all()[:10]
     return render_to_response('used.html', {'Product' : entries, 
                                                        'usergreet' : usergreet})
+
+def useddetail(request, used_id):                                             
+    usergreet = 0                                                               
+    if request.user.is_authenticated():                                         
+        usergreet = 'Hello, ' + request.user.username                           
+    movie = Product.objects.get(pk=used_id)                                    
+    return render_to_response('proddetail.html', {'product' : movie,            
+                                                       'usergreet' : usergreet})
+
 
 def help(request):
     usergreet = 0
@@ -142,3 +166,11 @@ def games(request):
     entries = Product.objects.all()[:10]
     return render_to_response('games.html', {'Product' : entries, 
                                                          'usergreet':usergreet})
+
+def gamesdetail(request, game_id):                                             
+    usergreet = 0                                                               
+    if request.user.is_authenticated():                                         
+        usergreet = 'Hello, ' + request.user.username                           
+    movie = Product.objects.get(pk=game_id)                                    
+    return render_to_response('proddetail.html', {'product' : movie,            
+                                                       'usergreet' : usergreet})
