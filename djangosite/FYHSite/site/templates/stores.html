@@ -1,6 +1,6 @@
 {% extends "advert_base.html" %}
+
 {% block content %}
-{% load easy_maps_tags cache %}                                                 
 {% block html %}                                                                
     <h4>Store Location</h4>                                                     
     </p>                                                                        
@@ -12,11 +12,52 @@
   <li>City:  <input Type="text" name="city"/></li></p>
   <li>State:  <input Type="text"/></li></p>
   <li>ZIP:  <input Type="text"/></li></p>
-  <!--<li>Longitude:  <input Type="text"/></li></p>
-  <li>Latitude:  <input Type="text"/></li></p>-->
+  <li>Latitude:  <input Type="text" name="latitude"/></li></p>
+  <li>Longitude:  <input Type="text" name="longitude"/></li></p>
   <input type="submit" value="Find Stores"/>
   </form>
   </ul>
-    {% easy_map mapaddress 800 400 %}
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT0PBvRRcDdzS8j5h9mobSKHMAttBBOak&sensor=false">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng({{ lat }}, {{ lng }}),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+        var myLatlng = new google.maps.LatLng({{ lat }},  {{ lng }});
+        var starIcon = {
+            path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+            fillColor: "blue",
+            fillOpacity: 0.5,
+            scale: .1,
+            strokeColor: "black",
+            strokeWeight: 2
+        };
+        var marker = new google.maps.Marker ({
+                    position: myLatlng,
+                    icon: starIcon,
+                })
+        marker.setMap(map);
+        }
+    </script>
+  </head>
+  <body onload="initialize()">
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+  </body>
+</html>
+
 {% endblock %}
 {% endblock %}

@@ -1,3 +1,4 @@
+from models import Store
 from models import Product
 from django.shortcuts import render_to_response
 
@@ -101,9 +102,21 @@ def stores(request):
     country = request.GET.get('country')
     latitude = request.GET.get('latitude')
     longitude = request.GET.get('longitude')
-    mapaddress = str(city) + ','+ str(address)
-    return render_to_response('stores.html', {'city':city, 'address':address, 
-                                'mapaddress':mapaddress, 'usergreet':usergreet})
+    lat = None
+    lng = None
+    stores = Store.objects.all()
+    for fyh in stores:
+        print "latitude: " + fyh.Latitude
+        print "longitude: " + fyh.Longitude
+        if latitude == fyh.Latitude and longitude == fyh.Longitude:
+            lat = latitude
+            lng = longitude
+        if latitude == fyh.Latitude and longitude == fyh.Longitude:
+            lat = latitude
+            lng = longitude
+
+    return render_to_response('stores.html', {'latitude':latitude, 
+             'longitude':longitude, 'lat':lat,'lng':lng, 'usergreet':usergreet})
 def deactivate(request):
     if request.user.is_authenticated():
         request.user.is_active = 0
