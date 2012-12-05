@@ -23,7 +23,7 @@
     {% for product in Product %}
         {% if product.ProductType_id == 1 %}
             <div class="itemlink">
-            <h3><a href="/Movie/{{product.UPCCode}}/">{{ product.ProductName}}</a></h3>
+            <h3><a href="/Movies/{{product.UPCCode}}/">{{ product.ProductName}}</a></h3>
             <p>Price: {{ product.ProductPrice}}</p>
             <p>Description: <br/>{{ product.ProductDescription}}</p>
             </div>

@@ -2,6 +2,7 @@ from models import Store
 from models import Product
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+
 def home(request):
     usergreet = 0
     if request.user.is_authenticated():
@@ -174,3 +175,49 @@ def gamesdetail(request, game_id):
     movie = Product.objects.get(pk=game_id)                                    
     return render_to_response('proddetail.html', {'product' : movie,            
                                                        'usergreet' : usergreet})
+
+def add_to_cart(request):
+    isauthed = 1
+    usergreet = 0
+    user = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        user = request.user.username
+        usergreet = 'Hello, ' + user
+
+    productID = request.GET.get('prodID')
+    product = Product.objects.get(pk=productID)
+    cart = request.session.get('cart', {})
+    name = product.ProductName
+    quantity = int(request.GET.get('quantity'))
+    price = product.ProductPrice
+    totalPrice = quantity*price
+    cart[productID] = name,quantity,price,totalPrice
+    request.session['cart']=cart
+    return render_to_response('cartadd.html',{'usergreet':usergreet})
+
+def remove_from_cart(request,product_id,quantity):
+    isauthed = 1
+    usergreet = 0
+    user = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        user = request.user.username
+        usergreet = 'Hello, ' + user
+
+    productID = request.GET.get('prodID')
+    product = Product.objects.get(pk=productID)
+    cart = request.session.get('cart', {})
+    cart[productID] = 0
+    request.session['cart']=cart
+    return render_to_response('cartadd.html',{'usergreet':usergreet})
+
+def get_cart(request):
+    isauthed = 0
+    usergreet = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        usergreet = 'Hello, ' + request.user.username
+        cart = request.session.get('cart',{})
+        print cart
+    return render_to_response('cart.html', {'cart':cart,'usergreet':usergreet, 'isauthed':isauthed})

@@ -19,11 +19,17 @@
 {% block content %}
   <h4>{{ product.ProductType }}</h4>
   <p>
-    <hr />
+    <hr>
             <h3>{{ product.ProductName}}</h3>
             <p>Price: {{ product.ProductPrice}}</p>
             <p>Description: <br/>{{ product.ProductDescription}}</p>
             </div>
             <hr />
+            <form action="/add/" method="GET">
+            <input type="hidden" name="prodID" value="{{product.UPCCode}}"/>
+            <input type="text" name="quantity"/>
+            <input type="submit" value="Add To cart"/>
+            </form>
+    </hr>
   </p>
 {% endblock %}
