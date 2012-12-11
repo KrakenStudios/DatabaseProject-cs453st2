@@ -2,62 +2,86 @@
 
 {% block content %}
 {% block html %}                                                                
-    <h4>Store Location</h4>                                                     
-    </p>                                                                        
-    <ul><p>   
-  <p> Please Enter an city, state, zip-code, or longitude and latitude, and if desired, the radius in which you would like to search for locations. </p>
-  <ul><p>
-  <form action="." method="push">
-  <li>Address:  <input Type="text" name="address"/></li></p>
-  <li>City:  <input Type="text" name="city"/></li></p>
-  <li>State:  <input Type="text"/></li></p>
-  <li>ZIP:  <input Type="text"/></li></p>
-  <li>Latitude:  <input Type="text" name="latitude"/></li></p>
-  <li>Longitude:  <input Type="text" name="longitude"/></li></p>
-  <input type="submit" value="Find Stores"/>
-  </form>
-  </ul>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map_canvas { height: 100% }
-    </style>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT0PBvRRcDdzS8j5h9mobSKHMAttBBOak&sensor=false">
-    </script>
-    <script type="text/javascript">
-      function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng({{ lat }}, {{ lng }}),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            mapOptions);
-        var myLatlng = new google.maps.LatLng({{ lat }},  {{ lng }});
-        var starIcon = {
-            path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
-            fillColor: "blue",
-            fillOpacity: 0.5,
-            scale: .1,
-            strokeColor: "black",
-            strokeWeight: 2
-        };
-        var marker = new google.maps.Marker ({
-                    position: myLatlng,
-                    icon: starIcon,
-                })
-        marker.setMap(map);
+<head>
+<title>Stores Map</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0px; padding: 0px }
+  #map_canvas { height: 100% }
+</style>
+<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT0PBvRRcDdzS8j5h9mobSKHMAttBBOak&sensor=false">
+</script>
+<script type="text/javascript">
+  var geocoder;
+  var map;
+  var myStar = {
+  path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+  fillColor: "purple",
+  fillOpacity: 0.5,
+  scale: 0.2,
+  strokeColor: "gold",
+  strokeWeight: 5
+  };
+  
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(35.3097, -83.1836);
+    var myOptions = {
+      zoom: 10,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+        myOptions);
+  }
+  
+  function codeAddress() {
+    var sAddress = document.getElementById("inputTextAddress").value;
+    geocoder.geocode( { 'address': sAddress}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                icon: myStar,
+                map: map, 
+                position: results[0].geometry.location
+            });
+        } else {
+            alert("This Shit did not work because: " + status);
         }
-    </script>
-  </head>
-  <body onload="initialize()">
-    <div id="map_canvas" style="width:100%; height:100%"></div>
-  </body>
-</html>
+      });
+  }
+  
+  function latLng() {
+    var mylatLng = new google.maps.LatLng(document.getElementById("inputLatLng").value);
+    map.setCenter(mylatLng);
+    var marker =  new google.maps.Marker({
+        icon: myStar,
+        map: map,
+        position: mylatLng
+        });
+    } 
+</script>
+</head>
+<body onload="initialize()">
+    <div>
 
+        <div>
+        <!--Create a text box input for the user to enter the street address-->
+        Address: <input type="text" id="inputTextAddress" style=" width:200px" title="Address to Geocode"/>
+        Latitude and Longitude: <input type="text" id="inputLatLng" style=" width:200px" title="LatLng"/>
+        <!--Longitude: <input type="text" id="inputLongitude" style=" width:200px" title="Longitude"/>-->
+        <!--Create a button input for the user to click to geocode the address-->
+        <p>
+
+        </p>
+        <input type="button" onclick="codeAddress()" id="inputButtonGeocode" style="width:200px" title="Click to Geocode" value="GO WESTERN!!" />
+        <input type="button" onclick="latLng()" id="inputButtonLatLng" style="width:200px" title="Click to LatLng" value="APP SUCKS!!" />
+        <div id="map_canvas" style="width:600px; height:500px"></div>
+        </div>
+    </div>
+</body>
+</html>  
 {% endblock %}
 {% endblock %}
