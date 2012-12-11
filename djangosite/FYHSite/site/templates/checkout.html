@@ -4,7 +4,7 @@
     <div class="login">
     {% if usergreet %}
         
-        <h3>Shopping Cart</h3>
+        <h3>Purchase Products</h3>
         <table>
             <tr>
                 <th>ProductID</th>
@@ -24,9 +24,9 @@
             </tr>
             {% endfor%}
         </table>
-    <form action="/checkout/" method="GET">
+    <form action="/confirmorder/" method="GET">
     <input type="hidden" value={{cart.items}} name="cart">
-    <input type="submit" value="Purchase">
+    <input type="submit" value="Place order">
     </form>
     {% else %}
         <p>Sorry, but you must be logged in to view your cart!</p>

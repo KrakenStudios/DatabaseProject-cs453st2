@@ -27,7 +27,7 @@ class Address(models.Model):
     ZIPCode = models.CharField(max_length = 5)
 
     def __unicode__(self):
-        return self.AddressLineOne + AddressLineTwo + City + State + ZIPCode
+        return self.AddressLineOne + self.AddressLineTwo + self.City + self.State + self.ZIPCode
 
 class Store(models.Model):
     Store_ID = models.IntegerField()

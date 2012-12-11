@@ -171,6 +171,7 @@ def add_to_cart(request):
     isauthed = 1
     usergreet = 0
     user = 0
+    cart = 0
     if request.user.is_authenticated():
         isauthed = 1
         user = request.user.username
@@ -191,6 +192,7 @@ def remove_from_cart(request,product_id,quantity):
     isauthed = 1
     usergreet = 0
     user = 0
+    cart = 0
     if request.user.is_authenticated():
         isauthed = 1
         user = request.user.username
@@ -206,6 +208,7 @@ def remove_from_cart(request,product_id,quantity):
 def get_cart(request):
     isauthed = 0
     usergreet = 0
+    cart = 0
     if request.user.is_authenticated():
         isauthed = 1
         usergreet = 'Hello, ' + request.user.username
@@ -238,6 +241,7 @@ def remove_from_wishlist(request,product_id,quantity):
     isauthed = 1
     usergreet = 0
     user = 0
+    cart = 0
     if request.user.is_authenticated():
         isauthed = 1
         user = request.user.username
@@ -253,9 +257,40 @@ def remove_from_wishlist(request,product_id,quantity):
 def get_wishlist(request):
     isauthed = 0
     usergreet = 0
+    cart = 0
     if request.user.is_authenticated():
         isauthed = 1
         usergreet = 'Hello, ' + request.user.username
         cart = request.session.get('wishlist',{})
         print cart
     return render_to_response('wishlist.html', {'cart':cart,'usergreet':usergreet, 'isauthed':isauthed})
+
+def ordercomplete(request):
+    isauthed = 0
+    usergreet = 0
+    cart = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        usergreet = 'Hello, ' + request.user.username
+        cart = request.session.get('cart',{})
+    return render_to_response('ordercomplete.html', {'cart':cart,'usergreet':usergreet, 'isauthed':isauthed})
+
+def confirmorder(request):
+    isauthed = 0
+    usergreet = 0
+    cart = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        usergreet = 'Hello, ' + request.user.username
+        cart = request.session.get('cart',{})
+    return render_to_response('confirmorder.html', {'cart':cart,'usergreet':usergreet, 'isauthed':isauthed})
+
+def checkout(request):
+    isauthed = 0
+    usergreet = 0
+    cart = 0
+    if request.user.is_authenticated():
+        isauthed = 1
+        usergreet = 'Hello, ' + request.user.username
+        cart = request.session.get('cart',{})
+    return render_to_response('checkout.html', {'cart':cart,'usergreet':usergreet, 'isauthed':isauthed})

@@ -1,0 +1,12 @@
+{% extends "advert_base.html" %}
+
+{% block content %}
+    <div class="login">
+    {% if usergreet %}
+        <h3>Added to cart!</h3>
+        <p>Wishlist item(s) successfully added to cart.</p>
+    {% else %}
+        <p>Sorry, but you must be logged in to add/remove items!</p>
+    {% endif %}
+    </div>
+{% endblock %}
