@@ -28,4 +28,7 @@ urlpatterns = patterns('',
     url(r'^ordertrack/', 'FYHSite.site.views.track',name='track'),
     url(r'^add/','FYHSite.site.views.add_to_cart'),
     url(r'^addlist/','FYHSite.site.views.add_to_wishlist'),
+    url(r'^checkout/','FYHSite.site.views.checkout'),
+    url(r'^confirmorder/','FYHSite.site.views.confirmorder'),
+    url(r'^ordercomplete/','FYHSite.site.views.ordercomplete'),
 )

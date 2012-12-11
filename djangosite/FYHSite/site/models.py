@@ -87,7 +87,7 @@ class IsATypeOf(models.Model):
     Sub_Type_ID = models.IntegerField()                                         
                                                                                 
     def __unicode__(self):                                                      
-        return Type_ID + Sub_Type_Id           
+        return self.Type_ID + self.Sub_Type_Id           
 
 class OrderTracking(models.Model):
     Order_ID = models.IntegerField()
@@ -101,21 +101,21 @@ class ShipsTo(models.Model):
     Address_ID = models.IntegerField()
 
     def __unicode__(self):
-        return Customer_ID + Address_ID
+        return "Customer: " + str(self.Customer_ID) + " " + "Address:" + str(self.Address_ID)
 
 class BillsTo(models.Model):
     Customer_ID = models.IntegerField()
     Address_ID = models.IntegerField()
 
     def __unicode__(self):
-        return Customer_ID + Address_ID
+        return self.Customer_ID + self.Address_ID
 
 class SellsTo(models.Model):
     Vendor_ID = models.IntegerField()
     Store_ID = models.IntegerField()
 
     def __unicode__(self):
-        return Vendor_ID + Store_ID
+        return self.Vendor_ID + self.Store_ID
 
 class SellsThese(models.Model):
     Store_ID = models.IntegerField()
@@ -125,7 +125,7 @@ class SellsThese(models.Model):
     AmountInStock = models.IntegerField()
 
     def __unicode__(self):
-        return Store_ID + UPCCode + Price
+        return self.Store_ID + self.UPCCode + self.Price
 
 class Ordered(models.Model):
     Customer_ID = models.IntegerField()
@@ -133,7 +133,7 @@ class Ordered(models.Model):
     DateOrdered = models.CharField(max_length = 10)
 
     def __unicode__(self):
-        return Customer_ID + Order_ID + DateOrdered
+        return self.Customer_ID + self.Order_ID + self.DateOrdered
 
 class BeenOrdered(models.Model):
     UPCCode = models.CharField(max_length = 12)
@@ -141,11 +141,11 @@ class BeenOrdered(models.Model):
     NumberOrdered = models.IntegerField()
 
     def __unicode__(self):
-        return UPCCode + Order_ID + NumberOrdered
+        return self.UPCCode + self.Order_ID + self.NumberOrdered
 
 class Restocks(models.Model):
     Vendor_ID = models.IntegerField()
     Brand_ID = models.IntegerField()
 
     def __unicode__(self):
-        return Vendor_ID + Brand_ID
+        return self.Vendor_ID + self.Brand_ID
