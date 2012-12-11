@@ -2,7 +2,7 @@ from models import Store
 from models import Product
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
-
+from django.template import RequestContext
 def home(request):
     usergreet = 0
     if request.user.is_authenticated():
@@ -283,7 +283,14 @@ def confirmorder(request):
         isauthed = 1
         usergreet = 'Hello, ' + request.user.username
         cart = request.session.get('cart',{})
-    return render_to_response('confirmorder.html', {'cart':cart,'usergreet':usergreet, 'isauthed':isauthed})
+        addOne = request.GET.get('addressOne') 
+        addTwo = request.GET.get('addressTwo')
+        city = request.GET.get('City')
+        state = request.GET.get('state')
+        zipcode = request.GET.get('zipCode')
+    return render_to_response('confirmorder.html', {'cart':cart,'usergreet':usergreet, 'isauthed':isauthed, 
+                                                    'addOne':addOne, 'addTwo':addTwo, 'city':city, 'state':state,
+                                                    'zipcode':zipcode}, RequestContext(request))
 
 def checkout(request):
     isauthed = 0

@@ -3,7 +3,6 @@
 {% block content %}
     <div class="login">
     {% if usergreet %}
-        
         <h3>Confirm Order</h3>
         <table>
             <tr>
@@ -25,7 +24,23 @@
             {% endfor%}
         </table>
     <form action="/ordercomplete/" method="GET">
+    {% csrf_token %}    
     <input type="hidden" value={{cart.items}} name="cart">
+    <div>
+    Address One: {{addOne}}
+    </div>
+    <div>
+    Address Two: {{addTwo}}
+    </div>
+    <div>
+    City: {{city}}
+    </div>
+    <div>
+    State: {{state}}
+    </div>
+    <div>
+    Zip: {{zipcode}}
+    </div>
     <input type="submit" value="Confirm order">
     </form>
     {% else %}
