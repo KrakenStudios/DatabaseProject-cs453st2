@@ -1,0 +1,31 @@
+{% extends "advert_base.html" %}
+{% block content %}
+<form action="" method="post">
+<!-- use csrf decorator if using iframes -->
+{% csrf_token %}
+{% if form.errors %}<p> Please correct the following fields.</p>{% endif %}
+{% comment %}
+<div class="register_div">
+    <!-- line only shows up if username is invalid or taken -->
+    {% if form.username.errors %}<p class="error">{{ form.username.errors }}</p>{% endif %}
+    <p><label for="username"{% if form.username.errors %} class="error"{% endif %}>Username:</label></p>
+    <p>{{ form.username }}</p>
+</div>
+<div class="register_div">
+    <!-- line only shows up if username is invalid or taken -->
+    {% if form.password.errors %}<p class="error">{{ form.password.errors }}</p>{% endif %}
+    <p><label for="password"{% if form.password.errors %} class="error"{% endif %}>Password:</label></p>
+    <p>{{ form.password }}</p>
+</div>
+<div class="register_div">
+    <!-- line only shows up if username is invalid or taken -->
+    {% if form.password1.errors %}<p class="error">{{ form.password1.errors }}</p>{% endif %}
+    <p><label for="password"{% if form.password1.errors %} class="error"{% endif %}>Verify:</label></p>
+    <p>{{ form.password1 }}</p>
+</div>
+{% endcomment %}
+{% if username_taken %}<p class="error">Username was already take, please try another.</p>{% endif %}
+{{ form.as_p }}
+<p><input type="submit" alt="register" /></p>
+</form>
+{% endblock %}

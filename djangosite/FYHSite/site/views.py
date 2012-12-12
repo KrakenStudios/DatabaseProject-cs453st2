@@ -1,8 +1,12 @@
-from models import Store
+from models import Store, Address, Customer
 from models import Product
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
-from django.template import RequestContext
+from django.http import HttpResponse, HttpResponseRedirect
+from forms import LoginForm, RegistrationForm
+from django.contrib.auth import authenticate, login, logout
+from django.template import Context, loader, RequestContext
+from django.contrib.auth.models import User
+
 def home(request):
     usergreet = 0
     if request.user.is_authenticated():
@@ -86,11 +90,9 @@ def help(request):
         usergreet = 'Hello, ' + request.user.username
     return render_to_response('help.html', {'usergreet':usergreet})
 
-def login(request):
-    usergreet = 0
-    if request.user.is_authenticated():
-        usergreet = 'Hello, ' + request.user.username
-    return render_to_response('login.html')
+def userlogout(request):
+    logout(request)
+    return render_to_response('logout.html')
 
 def track(request):
     isauthed = 1
@@ -109,6 +111,82 @@ def wishlist(request):
         usergreet = 'Hello, ' + request.user.username
     return render_to_response('wishlist.html', {'usergreet':usergreet,
                                                            'isauthed':isauthed})
+def userlogin(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            customer = authenticate(username=username, password=password)
+            if customer is not None:
+                login(request, customer)
+                #maybe redirect to profile page?
+                return HttpResponseRedirect('/')
+            else:
+                bad_password = True
+                context = {'form': form, 'bad_password': bad_password}
+                return render_to_response('login.html', context,
+                                context_instance=RequestContext(request))
+        else:
+            context = {'form': form}
+            return render_to_response('login.html', context,
+                                context_instance=RequestContext(request))
+ 
+    else:
+        form = LoginForm()
+        context = {'form': form}
+        return render_to_response('login.html', context,
+                                context_instance=RequestContext(request)) 
+
+def registration(request):
+    if request.user.is_authenticated():
+        # ideal, but not created yet, going with homepage
+        #return HttpResponseRedirect('/profile/')
+        return HttpResponseRedirect('/')
+    if request.method == 'POST':
+        #fills out with whatever was posted
+        form = RegistrationForm(request.POST)
+        # runs all clean methods in form
+        if form.is_valid():
+            try: #customer exists
+                cusAlreadyExists = User.objects.get(username=
+                                form.cleaned_data['username'])
+                username_taken = True
+                context = {'form': form, 'username_taken': username_taken}
+                return render_to_response('register.html', context,
+                                context_instance=RequestContext(request))
+            except User.DoesNotExist: #customer did not exist
+                user = User.objects.create_user(
+                    username=form.cleaned_data['username'],
+                    password=form.cleaned_data['password1'])
+                user.save()
+                addr = Address(
+                    AddressLineOne = form.cleaned_data['street'],
+                    City = form.cleaned_data['city'],
+                    State = form.cleaned_data['state'],
+                    ZIPCode = form.cleaned_data['zipcode']
+                )
+                addr.save()
+                customer = Customer(user=user, Address=addr,
+                    FirstName = form.cleaned_data['firstName'],
+                    LastName = form.cleaned_data['lastName']
+                )
+                customer.save()
+                customer = authenticate(username=form.cleaned_data['username'],
+                    password=form.cleaned_data['password1'])
+                login(request, customer)
+                return HttpResponseRedirect('/')
+        else:
+            return render_to_response('register.html', {'form': form},
+                                    context_instance=RequestContext(request))
+    else:
+        #user not submitting the form, send blank form
+        form = RegistrationForm()
+        context = {'form': form}
+        return render_to_response('register.html', context,
+                                    context_instance=RequestContext(request))
 
 def stores(request):
     usergreet = 0
