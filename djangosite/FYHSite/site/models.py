@@ -62,13 +62,6 @@ class ProductType(models.Model):
     def __unicode__(self):                                                      
         return self.Department                                                  
                                                                                 
-class InstanceOf(models.Model):                                                 
-    Product = models.ForeignKey(Product)
-    Type = models.ForeignKey(ProductType)               
-                                                                                
-    def __unicode__(self):                                                      
-        return str(self.Type_ID)
-
 class Product(models.Model):
     UPCCode = models.CharField(max_length = 12, primary_key=True)
     ProductName = models.CharField(max_length = 50)
@@ -83,9 +76,17 @@ class Product(models.Model):
     def __unicode__(self):
         return self.ProductName
 
+
+class InstanceOf(models.Model):                                                 
+    Product = models.ForeignKey(Product)
+    Type = models.ForeignKey(ProductType)
+
+    def __unicode__(self):
+        return str(self.Type)
+
 class IsATypeOf(models.Model):                                                  
-    Type = models.ForeignKey(Type)                                             
-    Sub_Type = models.ForeignKey(Type)                                         
+    Type = models.ForeignKey(ProductType, related_name="%(app_label)s_%(class)s_related")                                             
+    Sub_Type = models.ForeignKey(ProductType)                                         
                                                                                 
     def __unicode__(self):                                                      
         return self.Type_ID + self.Sub_Type_Id           
