@@ -130,6 +130,9 @@ class SellsThese(models.Model):
     Price = models.CharField(max_length = 10)
     AmountInStock = models.IntegerField()
 
+    class Meta:
+        ordering = ["-NumberSold"]
+
     def __unicode__(self):
         return "Store: " + self.Store + " Sells: " + self.Product + " For: " + self.Price
 

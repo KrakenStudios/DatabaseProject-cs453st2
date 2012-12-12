@@ -1,0 +1,87 @@
+{% extends "advert_base.html" %}
+
+{% block content %}
+{% block html %}                                                                
+<head>
+<title>Stores Map</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0px; padding: 0px }
+  #map_canvas { height: 100% }
+</style>
+<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT0PBvRRcDdzS8j5h9mobSKHMAttBBOak&sensor=false">
+</script>
+<script type="text/javascript">
+  var geocoder;
+  var map;
+  var myStar = {
+  path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+  fillColor: "purple",
+  fillOpacity: 0.5,
+  scale: 0.2,
+  strokeColor: "gold",
+  strokeWeight: 5
+  };
+  
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(35.3097, -83.1836);
+    var myOptions = {
+      zoom: 10,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+        myOptions);
+  }
+  
+  function codeAddress() {
+    var sAddress = document.getElementById("inputTextAddress").value;
+    geocoder.geocode( { 'address': sAddress}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                icon: myStar,
+                map: map, 
+                position: results[0].geometry.location
+            });
+        } else {
+            alert("This Shit did not work because: " + status);
+        }
+      });
+  }
+  
+  function latLng() {
+    var mylatLng = new google.maps.LatLng(document.getElementById("inputLatLng").value);
+    map.setCenter(mylatLng);
+    var marker =  new google.maps.Marker({
+        icon: myStar,
+        map: map,
+        position: mylatLng
+        });
+    } 
+</script>
+</head>
+<body onload="initialize()">
+    <div>
+
+        <div>
+        <!--Create a text box input for the user to enter the street address-->
+        Address: <input type="text" id="inputTextAddress" style=" width:200px" title="Address to Geocode"/>
+        Latitude and Longitude: <input type="text" id="inputLatLng" style=" width:200px" title="LatLng"/>
+        <!--Longitude: <input type="text" id="inputLongitude" style=" width:200px" title="Longitude"/>-->
+        <!--Create a button input for the user to click to geocode the address-->
+        <p>
+
+        </p>
+        <input type="button" onclick="codeAddress()" id="inputButtonGeocode" style="width:200px" title="Click to Geocode" value="GO WESTERN!!" />
+        <input type="button" onclick="latLng()" id="inputButtonLatLng" style="width:200px" title="Click to LatLng" value="APP SUCKS!!" />
+        <div id="map_canvas" style="width:600px; height:500px"></div>
+        </div>
+    </div>
+</body>
+</html>  
+{% endblock %}
+{% endblock %}
