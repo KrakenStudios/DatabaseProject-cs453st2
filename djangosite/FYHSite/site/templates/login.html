@@ -1,5 +1,6 @@
 {% extends "advert_base.html" %}
 {% block content %}
+<h3>Login!</h3>
 <form action="" method="post">
 <!-- use csrf decorator if using iframes -->
 {% csrf_token %}
@@ -20,4 +21,7 @@
 </div>
 <p><input type="submit" alt="register" /></p>
 </form>
+<div class="itemlink">
+<p>If you do not have an account, you can create one here: <a href="/account/register">Register</a>
+</div>
 {% endblock %}
