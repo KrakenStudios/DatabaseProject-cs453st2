@@ -1,10 +1,11 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 class Customer(models.Model):
     Customer_ID = models.IntegerField()
     FirstName = models.CharField(max_length = 20)
     LastName = models.CharField(max_length = 20)
-
+    Address = models.ForeignKey('Address')
+    user = models.OneToOneField(User)
     def __unicode__(self):
         return self.FirstName + " " + self.LastName
 

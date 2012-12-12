@@ -26,6 +26,11 @@
     <form action="/ordercomplete/" method="GET">
     {% csrf_token %}    
     <input type="hidden" value={{cart.items}} name="cart">
+    <br/>
+    <div>
+    Ship to:
+    </div>
+    <br/>
     <div>
     Address One: {{addOne}}
     </div>
@@ -33,13 +38,13 @@
     Address Two: {{addTwo}}
     </div>
     <div>
-    City: {{city}}
+    City:        {{city}}
     </div>
     <div>
-    State: {{state}}
+    State:       {{state}}
     </div>
     <div>
-    Zip: {{zipcode}}
+    Zip:         {{zipcode}}
     </div>
     <input type="submit" value="Confirm order">
     </form>
