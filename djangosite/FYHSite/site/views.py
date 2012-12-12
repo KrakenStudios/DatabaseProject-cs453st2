@@ -26,17 +26,18 @@ def musicdetail(request, music_id):
     usergreet = 0                                                               
     if request.user.is_authenticated():                                         
         usergreet = 'Hello, ' + request.user.username                           
-    movie = Product.objects.get(pk=music_id)                                    
-    return render_to_response('proddetail.html', {'product' : movie,            
+    music = Product.objects.get(pk=music_id)                                    
+    return render_to_response('proddetail.html', {'product' : music,            
                                                        'usergreet' : usergreet})
 
 
 def movie(request):
     usergreet = 0
+    test = 0
     if request.user.is_authenticated():
         usergreet = 'Hello, ' + request.user.username
     entries = Product.objects.all()[:10]
-    return render_to_response('movie.html', {'Product' :entries, 
+    return render_to_response('movie.html', {'Test':test, 'Product' :entries, 
                                                        'usergreet' : usergreet})
 
 def moviedetail(request, movie_id):                                                             

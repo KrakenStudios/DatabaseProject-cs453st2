@@ -6,7 +6,7 @@ class Customer(models.Model):
     LastName = models.CharField(max_length = 20)
 
     def __unicode__(self):
-        return self.FirstName + self.LastName
+        return self.FirstName + " " + self.LastName
 
 class FrequentShopper(models.Model):
     Frequent_Shopper_ID = models.IntegerField(unique=True)
@@ -28,7 +28,7 @@ class Address(models.Model):
     ZIPCode = models.CharField(max_length = 5)
 
     def __unicode__(self):
-        return self.AddressLineOne + self.AddressLineTwo + self.City + self.State + self.ZIPCode
+        return self.AddressLineOne + " " + self.AddressLineTwo + " " + self.City + " " + self.State +  " " +self.ZIPCode
 
 class Store(models.Model):
     Store_ID = models.IntegerField()
@@ -60,28 +60,30 @@ class ProductType(models.Model):
     Department = models.CharField(max_length = 50)                              
                                                                                 
     def __unicode__(self):                                                      
-        return self.Department                                                  
-                                                                                
+        return self.Department 
+
 class Product(models.Model):
     UPCCode = models.CharField(max_length = 12, primary_key=True)
     ProductName = models.CharField(max_length = 50)
     ProductSize = models.CharField(max_length = 10)
     ProductWeightInPounds = models.DecimalField(max_digits=3, decimal_places=2)
-    ProductPrice = models.DecimalField(max_digits=3, decimal_places=2)
+    ProductPrice = models.DecimalField(max_digits=5, decimal_places=2)
     ProductDescription = models.TextField()
-    ProductType = models.ManyToManyField(ProductType)
-    #ProductType = models.ForeignKey(InstanceOf, to_field = 'Type_ID')
+    #ProductType = models.ManyToManyField(ProductType)
+    ProductType = models.CharField(max_length=10)
     Brand = models.ForeignKey(Brand)
     
     def __unicode__(self):
         return self.ProductName
 
+    def hello():
+        return self.ProductType
 
-class InstanceOf(models.Model):                                                 
+class InstanceOf(models.Model):       
     Product = models.ForeignKey(Product)
-    Type = models.ForeignKey(ProductType)
-
-    def __unicode__(self):
+    Type = models.ForeignKey(ProductType) 
+                                         
+    def __unicode__(self):              
         return str(self.Type)
 
 class IsATypeOf(models.Model):                                                  
@@ -89,7 +91,7 @@ class IsATypeOf(models.Model):
     Sub_Type = models.ForeignKey(ProductType)                                         
                                                                                 
     def __unicode__(self):                                                      
-        return self.Type_ID + self.Sub_Type_Id           
+        return "Type: " + self.Type_ID + " Subtype: " + self.Sub_Type_Id           
 
 class OrderTracking(models.Model):
     Order_ID = models.IntegerField()
@@ -103,21 +105,22 @@ class ShipsTo(models.Model):
     Address = models.ForeignKey(Address)
 
     def __unicode__(self):
-        return "Customer: " + str(self.Customer_ID) + " " + "Address:" + str(self.Address_ID)
+        return "Customer: " + str(self.Customer) + " Address: " + str(self.Address)
 
 class BillsTo(models.Model):
     Customer = models.ForeignKey(Customer)
     Address = models.ForeignKey(Address)
 
     def __unicode__(self):
-        return self.Customer_ID + self.Address_ID
+        return "Customer: " + str(self.Customer) + " Billing Address: " + str(self.Address)
 
 class SellsTo(models.Model):
     Vendor = models.ForeignKey(Vendor)
     Store = models.ForeignKey(Store)
 
     def __unicode__(self):
-        return self.Vendor + self.Store
+
+        return "Vendor: " + self.Vendor + "Sells to: " +  self.Store
 
 class SellsThese(models.Model):
     Store = models.ForeignKey(Store)
@@ -127,7 +130,7 @@ class SellsThese(models.Model):
     AmountInStock = models.IntegerField()
 
     def __unicode__(self):
-        return self.Store + self.Product + self.Price
+        return "Store: " + self.Store + " Sells: " + self.Product + " For: " + self.Price
 
 class Ordered(models.Model):
     Customer = models.ForeignKey(Customer)
@@ -135,7 +138,7 @@ class Ordered(models.Model):
     DateOrdered = models.DateField()
 
     def __unicode__(self):
-        return self.Customer + self.Order + self.DateOrdered
+        return self.Customer + "Ordered: " + self.Order + " on " + self.DateOrdered
 
 class BeenOrdered(models.Model):
     Product = models.ForeignKey(Product);
@@ -143,11 +146,12 @@ class BeenOrdered(models.Model):
     NumberOrdered = models.IntegerField()
 
     def __unicode__(self):
-        return self.Product + self.Order + self.NumberOrdered
+        return self.Order + " has " + self.NumberOrdered + " of " + self.Product
 
 class Restocks(models.Model):
     Vendor = models.ForeignKey(Vendor)
     Brand = models.ForeignKey(Brand)
 
     def __unicode__(self):
-        return self.Vendor + self.Brand
+        return self.Vendor + " restocks " + self.Brand
+

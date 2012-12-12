@@ -19,7 +19,7 @@
   <p>                                                                           
     <hr />               
     {% for product  in Product %}
-        {% if product.ProductType_id == 2 %}
+        {% if product.ProductType == "Music" %}
             <div class="itemlink">
             <h3><a href="/Music/{{product.UPCCode}}/">{{ product.ProductName}}</a></h3>
             <p>Price: {{ product.ProductPrice}}</p>

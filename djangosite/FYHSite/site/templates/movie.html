@@ -21,8 +21,7 @@
   <p>
     <hr />
     {% for product in Product %}
-        {{str(product.ProductType)}}
-        {% if product.ProductType_id == 1 %}
+        {% if product.ProductType == "Movie" %}
             <div class="itemlink">
             <h3><a href="/Movies/{{product.UPCCode}}/">{{ product.ProductName}}</a></h3>
             <p>Price: {{ product.ProductPrice}}</p>

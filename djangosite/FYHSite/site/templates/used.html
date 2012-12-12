@@ -16,8 +16,8 @@
   <p>                                                                           
     <hr />     
     {% for product  in Product %}
-        {% if product.ProductType_id == 3 %}
-            <div class="Product">
+        {% if product.ProductType == "Used" %}
+            <div class="itemlink">
             <h3><a href="/Used/{{product.UPCCode}}/">{{ product.ProductName}}</a></h3>
             <p>Price: {{ product.ProductPrice}}</p>
             <p>Description: <br/>{{ product.ProductDescription}}</p>
