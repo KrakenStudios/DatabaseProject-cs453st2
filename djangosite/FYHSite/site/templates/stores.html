@@ -48,36 +48,36 @@
                 position: results[0].geometry.location
             });
         } else {
-            alert("This Shit did not work because: " + status);
+            alert("Error: " + status);
         }
       });
   }
-  
-  function latLng() {
-    var mylatLng = new google.maps.LatLng(document.getElementById("inputLatLng").value);
+  function codeCoordinates() {
+    var lat = parseFloat(document.getElementById('inputLat').value);
+    var lng = parseFloat(document.getElementById('inputLng').value);
+    var mylatLng = new google.maps.LatLng(lat, lng);
     map.setCenter(mylatLng);
     var marker =  new google.maps.Marker({
         icon: myStar,
         map: map,
         position: mylatLng
         });
-    } 
+    }
+    
 </script>
 </head>
 <body onload="initialize()">
     <div>
 
         <div>
-        <!--Create a text box input for the user to enter the street address-->
         Address: <input type="text" id="inputTextAddress" style=" width:200px" title="Address to Geocode"/>
-        Latitude and Longitude: <input type="text" id="inputLatLng" style=" width:200px" title="LatLng"/>
-        <!--Longitude: <input type="text" id="inputLongitude" style=" width:200px" title="Longitude"/>-->
-        <!--Create a button input for the user to click to geocode the address-->
+        Latitude: <input type="text" id="inputLat" style=" width:200px" title="Lat"/>
+        Longitude: <input type="text" id="inputLng" style=" width:200px" title="Lng"/>
         <p>
 
         </p>
         <input type="button" onclick="codeAddress()" id="inputButtonGeocode" style="width:200px" title="Click to Geocode" value="GO WESTERN!!" />
-        <input type="button" onclick="latLng()" id="inputButtonLatLng" style="width:200px" title="Click to LatLng" value="APP SUCKS!!" />
+        <input type="button" onclick="codeCoordinates()" id="inputButtonLatLng" style="width:200px" title="Click to LatLng" value="APP SUCKS!!" />
         <div id="map_canvas" style="width:600px; height:500px"></div>
         </div>
     </div>
