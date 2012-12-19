@@ -1,29 +1,4 @@
-Todo:
-    me (chriS)
-    Allow users to view purchased products
-    Allow users to view preferred customer statics (points, etc)
-
-    
-    Matt - 
-    Fix product types...
-    -- We need to have a way to store orders for users, and the items they bought
-        -- also, the 'preferred customer' stuff needs to be somehow modeled
-    
-    -- Check out the django docs for models - they have a foreign key function 
-       we have able to use
-    
-    --if that's done, try getting stuff und ## ideas ## at least started
-
-    Diego -
-    -- Get maps working
-    --if that's done, try getting stuff und ## ideas ## at least started
-
- ## ideas ##
- Links from search direct to http://~~~/{games,movies,music,used}/{Product_ID}
-    - then displays all info of item
-    - same for listings on the {games,movies,used,music} page
-
-This is a university project created for our Database class.
+This is a university project created for our CS453/Database class.
 Authors:
     Chris Ward
     Diego H. Gonzalez Alanis
